@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "net.gobies.gobtweaks.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "gobtweaks.mixins.refmap.json",
+  "mixins": [
+    "carryon.PickupHandlerMixin",
+    "refurbishedfurniture.CrateBlockEntityMixin",
+    "vanilla.ItemEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

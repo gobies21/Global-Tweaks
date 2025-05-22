@@ -1,0 +1,25 @@
+
+modLoader="javafml"
+loaderVersion = "[47,)"
+license = "All Rights Reserved"
+
+[[mods]]
+modId="gobtweaks"
+version="1.0.0"
+displayName="Gob Tweaks"
+authors="gobies"
+description='''Tweaks!'''
+
+[[dependencies.gobtweaks]]
+modId="forge"
+mandatory= true
+versionRange = "[47,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.gobtweaks]]
+modId="minecraft"
+mandatory= true
+versionRange = "[1.20.1]"
+ordering="NONE"
+side="BOTH"
