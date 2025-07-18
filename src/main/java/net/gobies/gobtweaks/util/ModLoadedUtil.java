@@ -21,10 +21,10 @@ public class ModLoadedUtil {
     }
 
     public static boolean isSpartanWeaponryLoaded() {
-        return ModList.get().isLoaded("cataclysm");
+        return ModList.get().isLoaded("spartanweaponry");
     }
 
     public static boolean isIceandFireLoaded() {
-        return ModList.get().isLoaded("cataclysm");
+        return ModList.get().isLoaded("iceandfire");
     }
 }
