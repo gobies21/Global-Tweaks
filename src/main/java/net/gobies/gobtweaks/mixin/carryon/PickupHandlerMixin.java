@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import tschipp.carryon.common.carry.PickupHandler;
 
 @Mixin(PickupHandler.class)
-public abstract class PickupHandlerMixin {
+public class PickupHandlerMixin {
     @Inject(
             method = "canCarryGeneral",
             at = @At("TAIL"),

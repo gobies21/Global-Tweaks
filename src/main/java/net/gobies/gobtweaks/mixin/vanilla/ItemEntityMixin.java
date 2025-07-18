@@ -15,14 +15,14 @@ public abstract class ItemEntityMixin {
     @Inject(
             method = "thunderHit",
             at = @At("HEAD"),
-            cancellable = true)
-
+            cancellable = true
+    )
     //Prevent lightning from destroying items
-    public void thunderHit(ServerLevel pLevel, LightningBolt lightningBolt, CallbackInfo callback) {
+    public void thunderHit(ServerLevel pLevel, LightningBolt pLightning, CallbackInfo ci) {
         if (Config.LIGHTNING_DESTROY_ITEM.get()) {
             Entity entity = (Entity) ((Object) this);
             if (entity instanceof ItemEntity) {
-                callback.cancel();
+                ci.cancel();
             }
         }
     }

@@ -8,7 +8,7 @@ modId="gobtweaks"
 version="1.0.0"
 displayName="Gob Tweaks"
 authors="gobies"
-description='''Tweaks!'''
+description='''Various tweaks for many different mods and vanilla features'''
 
 [[dependencies.gobtweaks]]
 modId="forge"

@@ -5,6 +5,9 @@
   "refmap": "gobtweaks.mixins.refmap.json",
   "mixins": [
     "carryon.PickupHandlerMixin",
+    "jlme.SupremeSharpnessEnchantmentMixin",
+    "reforgingstation.QualityMixin",
+    "reforgingstation.QualityUtilMixin",
     "refurbishedfurniture.CrateBlockEntityMixin",
     "vanilla.ItemEntityMixin"
   ],
