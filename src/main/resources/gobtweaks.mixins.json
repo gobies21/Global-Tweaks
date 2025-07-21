@@ -4,15 +4,20 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "gobtweaks.mixins.refmap.json",
   "mixins": [
+    "blessfulled.DamagePopupTriggersMixin",
     "carryon.PickupHandlerMixin",
     "jlme.SupremeSharpnessEnchantmentMixin",
     "reforgingstation.QualityMixin",
     "reforgingstation.QualityUtilMixin",
     "refurbishedfurniture.CrateBlockEntityMixin",
+    "refurbishedfurniture.FridgeBlockEntityMixin",
     "vanilla.ItemEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
-  "minVersion": "0.8"
+  "minVersion": "0.8",
+  "client": [
+    "thirstwastaken.DrinkByHandClientMixin"
+  ]
 }

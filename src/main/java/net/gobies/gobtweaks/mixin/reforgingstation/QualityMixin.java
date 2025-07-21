@@ -18,6 +18,7 @@ import java.util.Map;
 @Mixin(Quality.class)
 public class QualityMixin {
 
+    // Adds new qualities based off of irons spellbooks
     @Inject(
             method = "attributeOperation",
             at = @At("HEAD"),
@@ -37,7 +38,7 @@ public class QualityMixin {
             at = @At("TAIL"),
             remap = false
     )
-    private static void attributeMap2(CallbackInfoReturnable<Map<Attribute, String>> cir) {
+    private static void attributeMap(CallbackInfoReturnable<Map<Attribute, String>> cir) {
         if (ModLoadedUtil.isIronsspellbooksLoaded()) {
             Map<Attribute, String> map = cir.getReturnValue();
             map.put(AttributeHandler.SPELL_POWER, "3176cb2e-5a6f-4f19-a2dc-f86982c98350");

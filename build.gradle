@@ -165,14 +165,16 @@ dependencies {
     //runtimeOnly(fg.deobf("curse.maven:spartan-weaponry-ice-and-fire-606315:5608442"))
     //implementation fg.deobf("curse.maven:spartan-weaponry-addon-toolkit-1051658:6213674")
     //compileOnly(fg.deobf("curse.maven:ice-and-fire-spartan-weaponry-extras-1191816:6150005"))
+    implementation fg.deobf("curse.maven:progressive-tweaks-1163889:6645509")
+    implementation fg.deobf("curse.maven:thirst-was-taken-679270:6660408")
+    implementation fg.deobf("curse.maven:alexs-caves-924854:5848216")
 
 }
 
-    mixin {
-        add sourceSets.main, "${mod_id}.mixins.refmap.json"
-        config "${mod_id}.mixins.json"
-    }
-
+mixin {
+    add sourceSets.main, "${mod_id}.mixins.refmap.json"
+    config "${mod_id}.mixins.json"
+}
 
 tasks.named('processResources', ProcessResources).configure {
     var replaceProperties = [

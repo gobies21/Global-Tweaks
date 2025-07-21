@@ -5,8 +5,8 @@ import com.github.alexthe666.iceandfire.item.IafItemRegistry;
 import com.github.alexthe666.iceandfire.item.ItemDragonArmor;
 import com.oblivioussp.spartanweaponry.item.ThrowingWeaponItem;
 import net.gobies.gobtweaks.Config;
+import net.gobies.gobtweaks.util.GTUtils;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -17,33 +17,19 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Mixin(QualityUtil.class)
 public abstract class QualityUtilMixin {
 
     @Unique
-    private static final Set<Item> TOOL_ITEMS = Config.ADD_TOOL_QUALITIES.get().stream()
-            .map(ResourceLocation::new)
-            .map(ForgeRegistries.ITEMS::getValue)
-            .filter(Objects::nonNull)
-            .collect(Collectors.toSet());
+    private static final Set<Item> TOOL_ITEMS = GTUtils.createItemSet(Config.ADD_TOOL_QUALITIES.get());
 
     @Unique
-    private static final Set<Item> SHIELD_ITEMS = Config.ADD_SHIELD_QUALITIES.get().stream()
-            .map(ResourceLocation::new)
-            .map(ForgeRegistries.ITEMS::getValue)
-            .filter(Objects::nonNull)
-            .collect(Collectors.toSet());
+    private static final Set<Item> SHIELD_ITEMS = GTUtils.createItemSet(Config.ADD_SHIELD_QUALITIES.get());
 
     @Unique
-    private static final Set<Item> BOW_ITEMS = Config.ADD_BOW_QUALITIES.get().stream()
-            .map(ResourceLocation::new)
-            .map(ForgeRegistries.ITEMS::getValue)
-            .filter(Objects::nonNull)
-            .collect(Collectors.toSet());
+    private static final Set<Item> BOW_ITEMS = GTUtils.createItemSet(Config.ADD_BOW_QUALITIES.get());
 
     @Unique
     private static final Set<Item> PET_ARMOR_ITEMS = new HashSet<>();
@@ -60,6 +46,7 @@ public abstract class QualityUtilMixin {
         }
     }
 
+    // Adds a config for custom weapons to be able to receive qualities
     @Inject(
             method = "toolQuality",
             at = @At("HEAD"),
@@ -70,7 +57,6 @@ public abstract class QualityUtilMixin {
         Item tool = stack.getItem();
         if (TOOL_ITEMS.contains(tool)) {
             cir.setReturnValue(true);
-            return;
         }
         if (ModLoadedUtil.isSpartanWeaponryLoaded() && tool instanceof ThrowingWeaponItem) {
             cir.setReturnValue(true);

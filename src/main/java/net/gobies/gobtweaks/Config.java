@@ -14,6 +14,8 @@ public class Config {
 
     public static ForgeConfigSpec.ConfigValue<Boolean> CRATE_INCREASE_ROWS;
     public static boolean crates_increase_rows;
+    public static ForgeConfigSpec.ConfigValue<Boolean> FRIDGE_INCREASE_ROWS;
+    public static boolean fridge_increase_rows;
     public static ForgeConfigSpec.ConfigValue<Boolean> LIGHTNING_DESTROY_ITEM;
     public static boolean lightning_destroy_item;
     public static ForgeConfigSpec.ConfigValue<Boolean> GRASS_ATTACK;
@@ -32,13 +34,13 @@ public class Config {
     public static List<? extends String> add_bow_qualities;
 
 
-
     public Config() {
     }
 
     @SubscribeEvent
     static void onLoad(ModConfigEvent.Loading configEvent) {
         crates_increase_rows = CRATE_INCREASE_ROWS.get();
+        fridge_increase_rows = FRIDGE_INCREASE_ROWS.get();
         lightning_destroy_item = LIGHTNING_DESTROY_ITEM.get();
         grass_attack = GRASS_ATTACK.get();
         supreme_sharpness_base_damage = SUPREME_SHARPNESS_BASE_DAMAGE.get().floatValue();
@@ -52,16 +54,17 @@ public class Config {
     static {
         BUILDER.push("Vanilla");
         LIGHTNING_DESTROY_ITEM = BUILDER.comment("Prevents lightning from destroying items").define("Prevention", true);
-        GRASS_ATTACK = BUILDER.comment("Allows attacking through grass without breaking it").define("Attack Through Grass", true);
+        GRASS_ATTACK = BUILDER.comment("Allows attacking through grass without breaking it").define("Attack_Through_Grass", true);
         BUILDER.pop();
 
         BUILDER.push("Refurbished_Furniture");
-        CRATE_INCREASE_ROWS = BUILDER.comment("Increase crate maximum rows from 3 to 6").define("Increase Rows", true);
+        CRATE_INCREASE_ROWS = BUILDER.comment("Increase crate maximum rows from 3 to 6").define("Increase_Crate_Rows", true);
+        FRIDGE_INCREASE_ROWS = BUILDER.comment("Increase fridge maximum rows from 3 to 6").define("Increase_Fridge_Rows", false);
         BUILDER.pop();
 
         BUILDER.push("JLME");
-        SUPREME_SHARPNESS_BASE_DAMAGE = BUILDER.comment("Supreme sharpness base damage").define("Base Damage", 4.0);
-        SUPREME_SHARPNESS_LEVEL_DAMAGE = BUILDER.comment("Supreme sharpness damage per level").define("Level Damage", 2.0);
+        SUPREME_SHARPNESS_BASE_DAMAGE = BUILDER.comment("Supreme sharpness base damage").define("Base_Damage", 4.0);
+        SUPREME_SHARPNESS_LEVEL_DAMAGE = BUILDER.comment("Supreme sharpness damage per level").define("Level_Damage", 2.0);
         BUILDER.pop();
 
         BUILDER.push("Reforging_Station");

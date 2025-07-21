@@ -27,4 +27,20 @@ public class ModLoadedUtil {
     public static boolean isIceandFireLoaded() {
         return ModList.get().isLoaded("iceandfire");
     }
+
+    public static boolean isPMLLoaded() {
+        return ModList.get().isLoaded("pml");
+    }
+
+    public static boolean isJLMELoaded() {
+        return ModList.get().isLoaded("jlme");
+    }
+
+    public static boolean isLocksLoaded() {
+        return ModList.get().isLoaded("locks");
+    }
+
+    public static boolean isAlexsCavesLoaded() {
+        return ModList.get().isLoaded("alexscaves");
+    }
 }
