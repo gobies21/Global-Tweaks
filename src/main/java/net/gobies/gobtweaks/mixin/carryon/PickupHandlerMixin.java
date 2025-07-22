@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,17 +22,13 @@ public class PickupHandlerMixin {
             remap = false,
             cancellable = true
     )
-    // Does not work in game for some reason...
     // Prevent picking up locked chests through carry-on
     private static void denyLocked(ServerPlayer player, Vec3 pos, CallbackInfoReturnable<Boolean> cir) {
-        if (ModLoadedUtil.isLocksLoaded()) {
-            BlockPos blockPos = new BlockPos((int) pos.x, (int) pos.y, (int) pos.z);
-            BaseContainerBlockEntity blockEntity = (BaseContainerBlockEntity) player.level().getBlockEntity(blockPos);
-            if (blockEntity != null) {
-                Level level = player.level();
-                if (LocksUtil.locked(level, BlockPos.containing(pos))) {
-                    cir.setReturnValue(false);
-                }
+        if (ModLoadedUtil.isLocksLoaded() && cir.getReturnValue()) {
+            BlockPos blockPos = BlockPos.containing(pos);
+            BlockEntity blockEntity = player.level().getBlockEntity(blockPos);
+            if (blockEntity instanceof BaseContainerBlockEntity && LocksUtil.locked(player.level(), blockPos)) {
+                cir.setReturnValue(false);
             }
         }
     }

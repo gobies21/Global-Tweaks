@@ -10,7 +10,8 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 public class CrateBlockEntityMixin {
     @ModifyConstant(
             method = "<init>(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V",
-            constant = @Constant(intValue = 3)
+            constant = @Constant(intValue = 3),
+            remap = false
     )
     // Change the default value of rows to 6
     private static int modifyRows(int original) {

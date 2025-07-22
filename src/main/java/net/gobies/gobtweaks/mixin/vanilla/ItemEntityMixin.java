@@ -17,7 +17,7 @@ public abstract class ItemEntityMixin {
             at = @At("HEAD"),
             cancellable = true
     )
-    //Prevent lightning from destroying items
+    // Prevent lightning from destroying items
     public void thunderHit(ServerLevel pLevel, LightningBolt pLightning, CallbackInfo ci) {
         if (Config.LIGHTNING_DESTROY_ITEM.get()) {
             Entity entity = (Entity) ((Object) this);

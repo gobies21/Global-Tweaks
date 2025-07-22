@@ -6,6 +6,8 @@
   "mixins": [
     "blessfulled.DamagePopupTriggersMixin",
     "carryon.PickupHandlerMixin",
+    "dungeoncrawl.RandomEquipmentMixin",
+    "iceandfire.EnumDragonArmorMixin",
     "jlme.SupremeSharpnessEnchantmentMixin",
     "reforgingstation.QualityMixin",
     "reforgingstation.QualityUtilMixin",

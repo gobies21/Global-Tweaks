@@ -1,6 +1,5 @@
 package net.gobies.gobtweaks.mixin.thirstwastaken;
 
-import com.github.alexmodguy.alexscaves.server.block.fluid.ACFluidRegistry;
 import dev.ghen.thirst.content.thirst.DrinkByHandClient;
 import dev.ghen.thirst.foundation.config.ClientConfig;
 import dev.ghen.thirst.foundation.network.ThirstModPacketHandler;
@@ -9,12 +8,15 @@ import dev.ghen.thirst.foundation.util.MathHelper;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -36,7 +38,9 @@ public class DrinkByHandClientMixin {
         Level level = mc.level;
         BlockPos blockPos = MathHelper.getPlayerPOVHitResult(Objects.requireNonNull(level), Objects.requireNonNull(player), ClipContext.Fluid.ANY).getBlockPos();
         if (ModLoadedUtil.isAlexsCavesLoaded()) {
-            if (level.getFluidState(blockPos).is(ACFluidRegistry.PURPLE_SODA_FLUID_SOURCE.get()) && player.isCrouching() && !player.isInvulnerable()) {
+            FluidState fluidState = level.getFluidState(blockPos);
+            ResourceLocation fluidLocation = ForgeRegistries.FLUIDS.getKey(fluidState.getType());
+            if (fluidLocation != null && fluidLocation.equals(new ResourceLocation("alexscaves", "purple_soda")) && player.isCrouching() && !player.isInvulnerable()) {
                 boolean HandAvailable;
                 if (!(Boolean) ClientConfig.DRINK_BOTH_HAND_NEEDED.get()) {
                     HandAvailable = player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty();

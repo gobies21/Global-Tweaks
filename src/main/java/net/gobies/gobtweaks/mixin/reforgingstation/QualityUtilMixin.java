@@ -4,6 +4,7 @@ import com.dplayend.reforgingstation.common.quality.QualityUtil;
 import com.github.alexthe666.iceandfire.item.IafItemRegistry;
 import com.github.alexthe666.iceandfire.item.ItemDragonArmor;
 import com.oblivioussp.spartanweaponry.item.ThrowingWeaponItem;
+import fuzs.mutantmonsters.world.item.ArmorBlockItem;
 import net.gobies.gobtweaks.Config;
 import net.gobies.gobtweaks.util.GTUtils;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
@@ -35,13 +36,15 @@ public abstract class QualityUtilMixin {
     private static final Set<Item> PET_ARMOR_ITEMS = new HashSet<>();
 
     static {
-        PET_ARMOR_ITEMS.add(IafItemRegistry.IRON_HIPPOGRYPH_ARMOR.get());
-        PET_ARMOR_ITEMS.add(IafItemRegistry.GOLD_HIPPOGRYPH_ARMOR.get());
-        PET_ARMOR_ITEMS.add(IafItemRegistry.DIAMOND_HIPPOGRYPH_ARMOR.get());
+        if (ModLoadedUtil.isIceandFireLoaded()) {
+            PET_ARMOR_ITEMS.add(IafItemRegistry.IRON_HIPPOGRYPH_ARMOR.get());
+            PET_ARMOR_ITEMS.add(IafItemRegistry.GOLD_HIPPOGRYPH_ARMOR.get());
+            PET_ARMOR_ITEMS.add(IafItemRegistry.DIAMOND_HIPPOGRYPH_ARMOR.get());
 
-        for (Item item : ForgeRegistries.ITEMS.getValues()) {
-            if (item instanceof ItemDragonArmor) {
-                PET_ARMOR_ITEMS.add(item);
+            for (Item item : ForgeRegistries.ITEMS.getValues()) {
+                if (item instanceof ItemDragonArmor) {
+                    PET_ARMOR_ITEMS.add(item);
+                }
             }
         }
     }
@@ -98,6 +101,19 @@ public abstract class QualityUtilMixin {
     private static void addPetQuality(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         Item petArmor = stack.getItem();
         if (ModLoadedUtil.isIceandFireLoaded() && PET_ARMOR_ITEMS.contains(petArmor)) {
+            cir.setReturnValue(true);
+        }
+    }
+
+    @Inject(
+            method = "helmetQuality",
+            at = @At("HEAD"),
+            remap = false,
+            cancellable = true
+    )
+    private static void addHelmetQuality(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
+        Item armor = stack.getItem();
+        if (ModLoadedUtil.isMutantMonstersLoaded() && armor instanceof ArmorBlockItem) {
             cir.setReturnValue(true);
         }
     }

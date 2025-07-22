@@ -136,28 +136,23 @@ dependencies {
     implementation fg.deobf("curse.maven:carry-on-274259:4882500")
     implementation fg.deobf("curse.maven:locks-unofficial-1128357:6115787")
     implementation fg.deobf("curse.maven:just-a-lot-more-enchantments-865111:6543956")
+    implementation fg.deobf("curse.maven:progressive-tweaks-1163889:6645509")
     implementation fg.deobf("curse.maven:progressive-mechanics-library-1235043:6454177")
-    implementation fg.deobf("curse.maven:blessfulled-1182590:6174088")
+    implementation fg.deobf("curse.maven:blessfulled-1182590:6624691")
     implementation fg.deobf("curse.maven:enhancedvisuals-255389:6192498")
     implementation fg.deobf("curse.maven:creativecore-257814:6383884")
-
-    //implementation fg.deobf("curse.maven:mutant-monsters-852665:5107399")
-    //implementation fg.deobf("curse.maven:puzzles-lib-495476:6387081")
-
+    implementation fg.deobf("curse.maven:mutant-monsters-852665:5107399")
+    implementation fg.deobf("curse.maven:puzzles-lib-495476:6387081")
     implementation fg.deobf("curse.maven:reforging-station-1202199:6208571")
     implementation fg.deobf("curse.maven:irons-spells-n-spellbooks-855414:6488484")
     implementation fg.deobf("curse.maven:geckolib-388172:6658942")
     implementation fg.deobf("curse.maven:playeranimator-658587:4587214")
     implementation fg.deobf("curse.maven:caelus-308989:5281700")
-
     implementation fg.deobf("curse.maven:lendercataclysm-551586:6769185")
     implementation fg.deobf("curse.maven:lionfish-api-1001614:5922047")
-
     implementation fg.deobf("curse.maven:curios-309927:6418456")
     implementation fg.deobf("curse.maven:simply-potion-rings-1217574:6557539")
-
-    //implementation fg.deobf("curse.maven:first-aid-276837:5531834")
-
+    implementation fg.deobf("curse.maven:first-aid-276837:5531834")
     implementation fg.deobf("curse.maven:ice-and-fire-dragons-264231:5633453")
     implementation fg.deobf("curse.maven:spartan-weaponry-278141:5597663")
     implementation fg.deobf("curse.maven:citadel-331936:6702068")
@@ -165,9 +160,8 @@ dependencies {
     //runtimeOnly(fg.deobf("curse.maven:spartan-weaponry-ice-and-fire-606315:5608442"))
     //implementation fg.deobf("curse.maven:spartan-weaponry-addon-toolkit-1051658:6213674")
     //compileOnly(fg.deobf("curse.maven:ice-and-fire-spartan-weaponry-extras-1191816:6150005"))
-    implementation fg.deobf("curse.maven:progressive-tweaks-1163889:6645509")
     implementation fg.deobf("curse.maven:thirst-was-taken-679270:6660408")
-    implementation fg.deobf("curse.maven:alexs-caves-924854:5848216")
+    implementation fg.deobf("curse.maven:dungeon-crawl-324973:6047153")
 
 }
 

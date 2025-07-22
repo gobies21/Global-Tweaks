@@ -3,6 +3,8 @@ package net.gobies.gobtweaks.util;
 import net.minecraftforge.fml.ModList;
 
 public class ModLoadedUtil {
+    public ModLoadedUtil() {
+    }
 
     public static boolean isCuriosLoaded() {
         return ModList.get().isLoaded("curios");
@@ -12,12 +14,20 @@ public class ModLoadedUtil {
         return ModList.get().isLoaded("irons_spellbooks");
     }
 
+    public static boolean isBlessfulledLoaded() {
+        return ModList.get().isLoaded("blessfuled");
+    }
+
     public static boolean isReforgingStationLoaded() {
         return ModList.get().isLoaded("reforgingstation");
     }
 
     public static boolean isCataclysmLoaded() {
         return ModList.get().isLoaded("cataclysm");
+    }
+
+    public static boolean isRefurbishedFurnitureLoaded() {
+        return ModList.get().isLoaded("refurbished_furniture");
     }
 
     public static boolean isSpartanWeaponryLoaded() {
@@ -40,7 +50,23 @@ public class ModLoadedUtil {
         return ModList.get().isLoaded("locks");
     }
 
+    public static boolean isCarryOnLoaded() {
+        return ModList.get().isLoaded("reforgingstation");
+    }
+
+    public static boolean isThirstLoaded() {
+        return ModList.get().isLoaded("thirst");
+    }
+
     public static boolean isAlexsCavesLoaded() {
         return ModList.get().isLoaded("alexscaves");
+    }
+
+    public static boolean isMutantMonstersLoaded() {
+        return ModList.get().isLoaded("mutantmonsters");
+    }
+
+    public static boolean isDungeonCrawlLoaded() {
+        return ModList.get().isLoaded("dungeoncrawl");
     }
 }
