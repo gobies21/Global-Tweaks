@@ -4,7 +4,6 @@ import melonslise.locks.common.util.LocksUtil;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,7 +25,7 @@ public class PickupHandlerMixin {
         if (ModLoadedUtil.isLocksLoaded() && cir.getReturnValue()) {
             BlockPos blockPos = BlockPos.containing(pos);
             BlockEntity blockEntity = player.level().getBlockEntity(blockPos);
-            if (blockEntity instanceof BaseContainerBlockEntity && LocksUtil.locked(player.level(), blockPos)) {
+            if (blockEntity != null && LocksUtil.locked(player.level(), blockPos)) {
                 cir.setReturnValue(false);
             }
         }

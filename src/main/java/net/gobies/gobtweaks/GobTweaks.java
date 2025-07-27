@@ -35,7 +35,8 @@ public class GobTweaks {
         if (ModLoadedUtil.isCarryOnLoaded() && ModLoadedUtil.isLocksLoaded()) LOGGER.info("Locks compatibility for carry-on has been loaded to not allow picking up blocks that are locked");
         if (ModLoadedUtil.isFBTLoaded() && ModLoadedUtil.isLocksLoaded()) LOGGER.info("Forgotten Battle Towers compatibility for locks has been loaded to allow using locked chests until they are unlocked in battle towers");
         if (ModLoadedUtil.isJLMELoaded()) LOGGER.info("JLME loaded new config options to change non configurable settings");
-        if (ModLoadedUtil.isReforgingStationLoaded()) LOGGER.info("Reforging Station loaded new qualities for irons spellbooks and option to add any tool to be allowed to receive qualities");
+        if (ModLoadedUtil.isReforgingStationLoaded()) LOGGER.info("Reforging Station loaded any item with repair material will work as their respective reforge item and option to add any tool to be allowed to receive qualities");
+        if (ModLoadedUtil.isReforgingStationLoaded() && ModLoadedUtil.isIronsspellbooksLoaded()) LOGGER.info("Reforging Station loaded new qualities for irons spellbooks and option to add any tool to be allowed to receive qualities");
         if (ModLoadedUtil.isReforgingStationLoaded() && ModLoadedUtil.isCataclysmLoaded()) LOGGER.info("Reforging station compatibility for Cataclysm has been loaded to allow all weapons from cataclysm to receive qualities");
         if (ModLoadedUtil.isRefurbishedFurnitureLoaded()) LOGGER.info("Refurbished Furniture loaded configs for fridges and crates to increase rows");
         if (ModLoadedUtil.isIceandFireLoaded()) LOGGER.info("Ice and Fire loaded fixed wrong armor values for dragon scale armor");

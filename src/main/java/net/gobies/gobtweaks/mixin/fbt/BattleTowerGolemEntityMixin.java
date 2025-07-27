@@ -23,6 +23,7 @@ public class BattleTowerGolemEntityMixin {
             cancellable = true,
             remap = false
     )
+    // Allow interacting with locked battle tower chests without the golem getting aggressive
     private static void targetChest(Level level, BlockPos chestPos, Player player, CallbackInfoReturnable<Boolean> cir) {
         if (ModLoadedUtil.isLocksLoaded()) {
             BlockState state = level.getBlockState(chestPos);
