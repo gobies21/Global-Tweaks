@@ -41,11 +41,13 @@ public abstract class QualityUtilMixin {
             PET_ARMOR_ITEMS.add(IafItemRegistry.GOLD_HIPPOGRYPH_ARMOR.get());
             PET_ARMOR_ITEMS.add(IafItemRegistry.DIAMOND_HIPPOGRYPH_ARMOR.get());
 
+            Set<Item> dragonArmorItems = new HashSet<>();
             for (Item item : ForgeRegistries.ITEMS.getValues()) {
                 if (item instanceof ItemDragonArmor) {
-                    PET_ARMOR_ITEMS.add(item);
+                    dragonArmorItems.add(item);
                 }
             }
+            PET_ARMOR_ITEMS.addAll(dragonArmorItems);
         }
     }
 

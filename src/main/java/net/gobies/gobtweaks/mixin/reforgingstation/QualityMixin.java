@@ -8,6 +8,7 @@ import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -61,6 +62,19 @@ public class QualityMixin {
                 list.add(new Quality.QualityType("mystic", ChatFormatting.AQUA, new Quality.Modifier(AttributeHandler.SPELL_POWER, 0.03F), new Quality.Modifier(RegistryAttributes.MAGIC_RESIST.get(), 1.0F)));
                 list.add(new Quality.QualityType("celestial", ChatFormatting.LIGHT_PURPLE, new Quality.Modifier(AttributeHandler.SPELL_POWER, 0.03F), new Quality.Modifier(AttributeHandler.MANA_REGEN, 0.03F), new Quality.Modifier(AttributeHandler.MAX_MANA, 10.0F)));
             }
+        }
+    }
+
+    @Inject(
+            method = "matchingMaterial",
+            at = @At("TAIL"),
+            remap = false,
+            cancellable = true
+    )
+    // Sets any item with a repair material to be able to be reforged
+    private static void reforgeMaterial(ItemStack stack, ItemStack materialStack, CallbackInfoReturnable<Boolean> cir) {
+        if (stack.getItem().isValidRepairItem(stack, materialStack) && Config.VALID_REPAIR_MATERIALS.get()) {
+            cir.setReturnValue(true);
         }
     }
 }

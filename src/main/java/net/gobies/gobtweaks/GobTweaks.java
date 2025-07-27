@@ -30,13 +30,16 @@ public class GobTweaks {
     }
     public void commonSetup(final FMLCommonSetupEvent event) {
         LOGGER.info("Vanilla Mixins loaded to prevent items from being destroyed by lightning");
+        LOGGER.info("Swing through grass has been loaded to allow hitting entities through grass without destroying the grass");
         if (ModLoadedUtil.isBlessfulledLoaded() && ModLoadedUtil.isPMLLoaded()) LOGGER.info("Blessfulled compatibility for PML has been loaded to allow critical hits numbers to be displayed");
-        if (ModLoadedUtil.isCarryOnLoaded() && ModLoadedUtil.isLocksLoaded()) LOGGER.info("Carry on compatibility for Locks has been loaded to not allow picking up blocks that are locked");
+        if (ModLoadedUtil.isCarryOnLoaded() && ModLoadedUtil.isLocksLoaded()) LOGGER.info("Locks compatibility for carry-on has been loaded to not allow picking up blocks that are locked");
+        if (ModLoadedUtil.isFBTLoaded() && ModLoadedUtil.isLocksLoaded()) LOGGER.info("Forgotten Battle Towers compatibility for locks has been loaded to allow using locked chests until they are unlocked in battle towers");
         if (ModLoadedUtil.isJLMELoaded()) LOGGER.info("JLME loaded new config options to change non configurable settings");
         if (ModLoadedUtil.isReforgingStationLoaded()) LOGGER.info("Reforging Station loaded new qualities for irons spellbooks and option to add any tool to be allowed to receive qualities");
         if (ModLoadedUtil.isReforgingStationLoaded() && ModLoadedUtil.isCataclysmLoaded()) LOGGER.info("Reforging station compatibility for Cataclysm has been loaded to allow all weapons from cataclysm to receive qualities");
         if (ModLoadedUtil.isRefurbishedFurnitureLoaded()) LOGGER.info("Refurbished Furniture loaded configs for fridges and crates to increase rows");
         if (ModLoadedUtil.isIceandFireLoaded()) LOGGER.info("Ice and Fire loaded fixed wrong armor values for dragon scale armor");
+        if (ModLoadedUtil.isIceandFireLoaded() && ModLoadedUtil.isDynamicTreesLoaded()) LOGGER.info("Dynamic Trees compatibility for ice and fire has been loaded to allow dragons to destroy dynamic trees");
         if (ModLoadedUtil.isDungeonCrawlLoaded()) LOGGER.info("Dungeon Crawl loaded new config option to set a chance for geared mobs to spawn with curse of vanishing on their gear");
     }
 

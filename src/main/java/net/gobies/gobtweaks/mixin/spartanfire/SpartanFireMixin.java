@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-//@Mixin(SpartanFire.class)
+//@BattleTowerGolemEntityMixin(SpartanFire.class)
 //public class SpartanFireMixin {
 //    @ModifyArg(method = "gatherTooltipComponents",
 //            at = @At("HEAD"),

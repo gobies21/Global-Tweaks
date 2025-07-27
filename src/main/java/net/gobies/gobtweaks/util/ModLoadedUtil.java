@@ -46,6 +46,10 @@ public class ModLoadedUtil {
         return ModList.get().isLoaded("jlme");
     }
 
+    public static boolean isFBTLoaded() {
+        return ModList.get().isLoaded("fbt");
+    }
+
     public static boolean isLocksLoaded() {
         return ModList.get().isLoaded("locks");
     }
@@ -68,5 +72,17 @@ public class ModLoadedUtil {
 
     public static boolean isDungeonCrawlLoaded() {
         return ModList.get().isLoaded("dungeoncrawl");
+    }
+
+    public static boolean isDynamicTreesLoaded() {
+        return ModList.get().isLoaded("dynamictrees");
+    }
+
+    public static boolean isGobsArmoryLoaded() {
+        return ModList.get().isLoaded("gobsarmory");
+    }
+
+    public static boolean isApothecaryLoaded() {
+        return ModList.get().isLoaded("apothecary");
     }
 }
