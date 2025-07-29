@@ -1,11 +1,11 @@
 
 modLoader="javafml"
 loaderVersion = "[47,)"
-license = "All Rights Reserved"
+license = "GNU General Public License"
 
 [[mods]]
 modId="gobtweaks"
-version="1.0.0"
+version="0.5.0"
 displayName="Gob Tweaks"
 authors="gobies"
 description='''Various tweaks for many different mods and vanilla features'''
