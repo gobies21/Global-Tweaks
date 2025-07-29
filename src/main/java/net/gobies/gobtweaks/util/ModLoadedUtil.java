@@ -78,10 +78,6 @@ public class ModLoadedUtil {
         return ModList.get().isLoaded("dynamictrees");
     }
 
-    public static boolean isGobsArmoryLoaded() {
-        return ModList.get().isLoaded("gobsarmory");
-    }
-
     public static boolean isApothecaryLoaded() {
         return ModList.get().isLoaded("apothecary");
     }
