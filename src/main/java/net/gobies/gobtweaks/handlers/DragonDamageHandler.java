@@ -1,6 +1,5 @@
 package net.gobies.gobtweaks.handlers;
 
-import com.github.alexthe666.iceandfire.entity.props.EntityDataProvider;
 import com.github.alexthe666.iceandfire.misc.IafDamageRegistry;
 import com.momosoftworks.coldsweat.core.init.EffectInit;
 import net.gobies.gobtweaks.CommonConfig;
