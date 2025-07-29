@@ -1,4 +1,4 @@
-package net.gobies.gobtweaks.handlers;
+package net.gobies.gobtweaks.util;
 
 public enum BranchEnum {
     ONLY_BRANCHES(3),

@@ -22,7 +22,7 @@ public class GobTweaks {
 
         MinecraftForge.EVENT_BUS.register(this);
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
 
         modBus.addListener(this::commonSetup);
         modBus.addListener(this::clientSetup);

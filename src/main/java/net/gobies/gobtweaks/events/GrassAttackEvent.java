@@ -1,6 +1,6 @@
 package net.gobies.gobtweaks.events;
 
-import net.gobies.gobtweaks.Config;
+import net.gobies.gobtweaks.CommonConfig;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.AABB;
@@ -22,7 +22,7 @@ public class GrassAttackEvent {
         if (event.getLevel().getBlockState(event.getPos()).getCollisionShape(event.getLevel(), event.getPos()).isEmpty() && event.getEntity() != null) {
 
             var player = event.getEntity();
-            if (Config.GRASS_ATTACK.get()) {
+            if (CommonConfig.GRASS_ATTACK.get()) {
                 var attackReach = player.getAttributeValue(ForgeMod.ENTITY_REACH.get());
                 if (player.isCreative()) {
                     attackReach = 5.0D;

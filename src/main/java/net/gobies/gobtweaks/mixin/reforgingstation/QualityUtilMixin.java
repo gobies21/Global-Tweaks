@@ -5,7 +5,7 @@ import com.github.alexthe666.iceandfire.item.IafItemRegistry;
 import com.github.alexthe666.iceandfire.item.ItemDragonArmor;
 import com.oblivioussp.spartanweaponry.item.ThrowingWeaponItem;
 import fuzs.mutantmonsters.world.item.ArmorBlockItem;
-import net.gobies.gobtweaks.Config;
+import net.gobies.gobtweaks.CommonConfig;
 import net.gobies.gobtweaks.util.GTUtils;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraft.world.item.Item;
@@ -24,13 +24,13 @@ import java.util.Set;
 public abstract class QualityUtilMixin {
 
     @Unique
-    private static final Set<Item> TOOL_ITEMS = GTUtils.createItemSet(Config.ADD_TOOL_QUALITIES.get());
+    private static final Set<Item> TOOL_ITEMS = GTUtils.createItemSet(CommonConfig.ADD_TOOL_QUALITIES.get());
 
     @Unique
-    private static final Set<Item> SHIELD_ITEMS = GTUtils.createItemSet(Config.ADD_SHIELD_QUALITIES.get());
+    private static final Set<Item> SHIELD_ITEMS = GTUtils.createItemSet(CommonConfig.ADD_SHIELD_QUALITIES.get());
 
     @Unique
-    private static final Set<Item> BOW_ITEMS = GTUtils.createItemSet(Config.ADD_BOW_QUALITIES.get());
+    private static final Set<Item> BOW_ITEMS = GTUtils.createItemSet(CommonConfig.ADD_BOW_QUALITIES.get());
 
     @Unique
     private static final Set<Item> PET_ARMOR_ITEMS = new HashSet<>();

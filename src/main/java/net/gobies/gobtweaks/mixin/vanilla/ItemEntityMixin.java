@@ -1,6 +1,6 @@
 package net.gobies.gobtweaks.mixin.vanilla;
 
-import net.gobies.gobtweaks.Config;
+import net.gobies.gobtweaks.CommonConfig;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LightningBolt;
@@ -19,7 +19,7 @@ public abstract class ItemEntityMixin {
     )
     // Prevent lightning from destroying items
     public void thunderHit(ServerLevel pLevel, LightningBolt pLightning, CallbackInfo ci) {
-        if (Config.LIGHTNING_DESTROY_ITEM.get()) {
+        if (CommonConfig.LIGHTNING_DESTROY_ITEM.get()) {
             Entity entity = (Entity) ((Object) this);
             if (entity instanceof ItemEntity) {
                 ci.cancel();

@@ -3,7 +3,7 @@ package net.gobies.gobtweaks.mixin.iceandfire;
 import com.ferreusveritas.dynamictrees.block.branch.BasicBranchBlock;
 import com.ferreusveritas.dynamictrees.data.DTBlockTags;
 import com.github.alexthe666.iceandfire.entity.EntityDragonBase;
-import net.gobies.gobtweaks.Config;
+import net.gobies.gobtweaks.CommonConfig;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.Block;
@@ -28,7 +28,7 @@ public class EntityDragonBaseMixin {
                 Block block = state.getBlock();
                 if (block instanceof BasicBranchBlock branchBlock) {
                     int radius = branchBlock.getRadius(state);
-                    if (radius <= Config.BREAK_BRANCH_TYPE.get().getValue()) {
+                    if (radius <= CommonConfig.BREAK_BRANCH_TYPE.get().getValue()) {
                         cir.setReturnValue(true);
                     }
                 }

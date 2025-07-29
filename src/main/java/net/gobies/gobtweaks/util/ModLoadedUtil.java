@@ -85,4 +85,8 @@ public class ModLoadedUtil {
     public static boolean isApothecaryLoaded() {
         return ModList.get().isLoaded("apothecary");
     }
+
+    public static boolean isColdSweatLoaded() {
+        return ModList.get().isLoaded("cold_sweat");
+    }
 }

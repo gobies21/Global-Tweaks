@@ -11,11 +11,13 @@
     "iceandfire.DragonUtilsMixin",
     "iceandfire.EntityDragonBaseMixin",
     "iceandfire.EnumDragonArmorMixin",
+    "iceandfire.FrozenDataMixin",
     "jlme.SupremeSharpnessEnchantmentMixin",
     "reforgingstation.QualityMixin",
     "reforgingstation.QualityUtilMixin",
     "refurbishedfurniture.CrateBlockEntityMixin",
-    "refurbishedfurniture.FridgeBlockEntityMixin",
+    "spartanweaponry.ClientEventHandlerMixin",
+    "vanilla.EntityMixin",
     "vanilla.ItemEntityMixin"
   ],
   "injectors": {
@@ -23,6 +25,7 @@
   },
   "minVersion": "0.8",
   "client": [
-    "thirstwastaken.DrinkByHandClientMixin"
+    "thirstwastaken.DrinkByHandClientMixin",
+    "vanilla.ScreenEffectRendererMixin"
   ]
 }

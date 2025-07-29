@@ -1,6 +1,6 @@
 package net.gobies.gobtweaks.mixin.dungeoncrawl;
 
-import net.gobies.gobtweaks.Config;
+import net.gobies.gobtweaks.CommonConfig;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -23,7 +23,7 @@ public class RandomEquipmentMixin {
     private static void createItemStack(RandomSource rand, Item item, int stage, CallbackInfoReturnable<ItemStack> cir) {
         ItemStack itemStack = cir.getReturnValue();
         if (itemStack != null) {
-            if (rand.nextFloat() < Config.DUNGEON_VANISH_CHANCE.get()) {
+            if (rand.nextFloat() < CommonConfig.DUNGEON_VANISH_CHANCE.get()) {
                 itemStack.enchant(Enchantments.VANISHING_CURSE, 1);
                 cir.setReturnValue(itemStack);
             }

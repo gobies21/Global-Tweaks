@@ -31,7 +31,7 @@ public class DrinkByHandClientMixin {
             at = @At("HEAD"),
             remap = false
     )
-    // Adds alexs caves compat to thirst was taken for soda fluid
+    // Adds alexs caves compatibility to thirst was taken for soda fluid
     private static void drinkByHand(CallbackInfo ci) {
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;

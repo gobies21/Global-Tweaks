@@ -95,7 +95,7 @@ dependencies {
     implementation fg.deobf("curse.maven:framework-549225:6531428")
     implementation fg.deobf("curse.maven:carry-on-274259:4882500")
     implementation fg.deobf("curse.maven:locks-unofficial-1128357:6115787")
-    implementation fg.deobf("curse.maven:just-a-lot-more-enchantments-865111:6543956")
+    implementation fg.deobf("curse.maven:just-a-lot-more-enchantments-865111:6684663")
     implementation fg.deobf("curse.maven:progressive-tweaks-1163889:6645509")
     implementation fg.deobf("curse.maven:progressive-mechanics-library-1235043:6454177")
     implementation fg.deobf("curse.maven:blessfulled-1182590:6624691")
@@ -126,6 +126,7 @@ dependencies {
     implementation fg.deobf("curse.maven:apothecary-potion-expansion-1278100:6637581")
     implementation fg.deobf("curse.maven:dynamictrees-252818:6655713")
     implementation fg.deobf("curse.maven:forgotten-battle-towers-1151901:6554491")
+    implementation fg.deobf("curse.maven:cold-sweat-506194:6503192")
 
     runtimeOnly(fg.deobf("curse.maven:configured-457570:5180900"))
     runtimeOnly(fg.deobf("curse.maven:crafttweaker-239197:6256146"))

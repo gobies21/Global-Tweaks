@@ -2,7 +2,7 @@ package net.gobies.gobtweaks.mixin.reforgingstation;
 
 import com.dplayend.reforgingstation.common.quality.Quality;
 import com.dplayend.reforgingstation.registry.RegistryAttributes;
-import net.gobies.gobtweaks.Config;
+import net.gobies.gobtweaks.CommonConfig;
 import net.gobies.gobtweaks.handlers.AttributeHandler;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraft.ChatFormatting;
@@ -55,7 +55,7 @@ public class QualityMixin {
     )
     private static void addAccessoryQualities(CallbackInfoReturnable<List<Quality.QualityType>> cir) {
         if (ModLoadedUtil.isIronsspellbooksLoaded()) {
-            if (Config.MAGE_QUALITIES.get()) {
+            if (CommonConfig.MAGE_QUALITIES.get()) {
                 List<Quality.QualityType> list = cir.getReturnValue();
                 list.add(new Quality.QualityType("inept", ChatFormatting.RED, new Quality.Modifier(AttributeHandler.MAX_MANA, -10.0F)));
                 list.add(new Quality.QualityType("adept", ChatFormatting.BLUE, new Quality.Modifier(AttributeHandler.MAX_MANA, 10.0F)));
@@ -73,7 +73,7 @@ public class QualityMixin {
     )
     // Sets any item with a repair material to be able to be reforged
     private static void reforgeMaterial(ItemStack stack, ItemStack materialStack, CallbackInfoReturnable<Boolean> cir) {
-        if (stack.getItem().isValidRepairItem(stack, materialStack) && Config.VALID_REPAIR_MATERIALS.get()) {
+        if (stack.getItem().isValidRepairItem(stack, materialStack) && CommonConfig.VALID_REPAIR_MATERIALS.get()) {
             cir.setReturnValue(true);
         }
     }
