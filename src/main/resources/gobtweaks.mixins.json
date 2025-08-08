@@ -17,6 +17,8 @@
     "reforgingstation.QualityUtilMixin",
     "refurbishedfurniture.CrateBlockEntityMixin",
     "spartanweaponry.ClientEventHandlerMixin",
+    "vanilla.CrossbowItemMixin",
+    "vanilla.EnchantmentMixin",
     "vanilla.EntityMixin",
     "vanilla.ItemEntityMixin"
   ],
@@ -25,6 +27,7 @@
   },
   "minVersion": "0.8",
   "client": [
+    "itemphysic.ItemPhysicClientMixin",
     "thirstwastaken.DrinkByHandClientMixin",
     "vanilla.ScreenEffectRendererMixin"
   ]

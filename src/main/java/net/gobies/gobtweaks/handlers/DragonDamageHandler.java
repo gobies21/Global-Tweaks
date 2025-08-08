@@ -2,16 +2,14 @@ package net.gobies.gobtweaks.handlers;
 
 import com.github.alexthe666.iceandfire.misc.IafDamageRegistry;
 import com.momosoftworks.coldsweat.core.init.EffectInit;
-import net.gobies.gobtweaks.CommonConfig;
+import net.gobies.gobtweaks.config.CommonConfig;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber
 public class DragonDamageHandler {
 
     @SubscribeEvent

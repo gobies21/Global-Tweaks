@@ -1,6 +1,10 @@
 package net.gobies.gobtweaks;
 
 import com.mojang.logging.LogUtils;
+import net.gobies.gobtweaks.config.CommonConfig;
+import net.gobies.gobtweaks.handlers.DragonDamageHandler;
+import net.gobies.gobtweaks.handlers.DynamicSticksHandler;
+import net.gobies.gobtweaks.handlers.ThirstHandler;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -27,6 +31,8 @@ public class GobTweaks {
         modBus.addListener(this::commonSetup);
         modBus.addListener(this::clientSetup);
 
+        registerHandlers();
+
     }
     public void commonSetup(final FMLCommonSetupEvent event) {
         LOGGER.info("Vanilla Mixins loaded to prevent items from being destroyed by lightning");
@@ -46,5 +52,11 @@ public class GobTweaks {
 
     public void clientSetup(final FMLClientSetupEvent event) {
         if (ModLoadedUtil.isThirstLoaded() && ModLoadedUtil.isAlexsCavesLoaded()) LOGGER.info("Thirst was taken compatibility for Alex's Caves has been loaded to allow hand drinking from soda fluids");
+    }
+
+    public static void registerHandlers() {
+        if (ModLoadedUtil.isIceandFireLoaded()) MinecraftForge.EVENT_BUS.register(DragonDamageHandler.class);
+        if (ModLoadedUtil.isDynamicTreesLoaded()) MinecraftForge.EVENT_BUS.register(DynamicSticksHandler.class);
+        if (ModLoadedUtil.isThirstLoaded()) MinecraftForge.EVENT_BUS.register(ThirstHandler.class);
     }
 }

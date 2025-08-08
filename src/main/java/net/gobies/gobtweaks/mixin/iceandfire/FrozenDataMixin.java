@@ -2,7 +2,7 @@ package net.gobies.gobtweaks.mixin.iceandfire;
 
 import com.github.alexthe666.iceandfire.entity.props.FrozenData;
 import com.momosoftworks.coldsweat.core.init.EffectInit;
-import net.gobies.gobtweaks.CommonConfig;
+import net.gobies.gobtweaks.config.CommonConfig;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;

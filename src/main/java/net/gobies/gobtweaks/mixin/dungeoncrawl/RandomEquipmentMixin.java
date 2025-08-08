@@ -1,6 +1,6 @@
 package net.gobies.gobtweaks.mixin.dungeoncrawl;
 
-import net.gobies.gobtweaks.CommonConfig;
+import net.gobies.gobtweaks.config.CommonConfig;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

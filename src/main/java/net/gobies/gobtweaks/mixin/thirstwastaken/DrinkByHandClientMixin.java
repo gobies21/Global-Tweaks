@@ -22,8 +22,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Objects;
-
 @Mixin(DrinkByHandClient.class)
 public class DrinkByHandClientMixin {
     @Inject(
@@ -36,8 +34,8 @@ public class DrinkByHandClientMixin {
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;
         Level level = mc.level;
-        BlockPos blockPos = MathHelper.getPlayerPOVHitResult(Objects.requireNonNull(level), Objects.requireNonNull(player), ClipContext.Fluid.ANY).getBlockPos();
-        if (ModLoadedUtil.isAlexsCavesLoaded()) {
+        if (ModLoadedUtil.isAlexsCavesLoaded() && level != null && player!= null) {
+        BlockPos blockPos = MathHelper.getPlayerPOVHitResult((level), (player), ClipContext.Fluid.ANY).getBlockPos();
             FluidState fluidState = level.getFluidState(blockPos);
             ResourceLocation fluidLocation = ForgeRegistries.FLUIDS.getKey(fluidState.getType());
             if (fluidLocation != null && fluidLocation.equals(new ResourceLocation("alexscaves", "purple_soda")) && player.isCrouching() && !player.isInvulnerable()) {

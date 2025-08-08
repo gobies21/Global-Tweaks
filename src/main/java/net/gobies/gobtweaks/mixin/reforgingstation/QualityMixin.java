@@ -2,7 +2,7 @@ package net.gobies.gobtweaks.mixin.reforgingstation;
 
 import com.dplayend.reforgingstation.common.quality.Quality;
 import com.dplayend.reforgingstation.registry.RegistryAttributes;
-import net.gobies.gobtweaks.CommonConfig;
+import net.gobies.gobtweaks.config.CommonConfig;
 import net.gobies.gobtweaks.handlers.AttributeHandler;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraft.ChatFormatting;

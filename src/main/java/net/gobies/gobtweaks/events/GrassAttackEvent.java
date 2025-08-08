@@ -1,6 +1,6 @@
 package net.gobies.gobtweaks.events;
 
-import net.gobies.gobtweaks.CommonConfig;
+import net.gobies.gobtweaks.config.CommonConfig;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.AABB;
@@ -20,7 +20,6 @@ public class GrassAttackEvent {
     @SubscribeEvent
     public static void onAttack(PlayerInteractEvent.LeftClickBlock event) {
         if (event.getLevel().getBlockState(event.getPos()).getCollisionShape(event.getLevel(), event.getPos()).isEmpty() && event.getEntity() != null) {
-
             var player = event.getEntity();
             if (CommonConfig.GRASS_ATTACK.get()) {
                 var attackReach = player.getAttributeValue(ForgeMod.ENTITY_REACH.get());
@@ -29,7 +28,6 @@ public class GrassAttackEvent {
                 }
                 AABB bounds = player.getBoundingBox().inflate(attackReach);
                 List<Entity> entities = player.level().getEntities(player, bounds);
-
                 LivingEntity target = null;
                 double nearestDistance = Double.MAX_VALUE;
                 var viewVector = player.getViewVector(1.0F);

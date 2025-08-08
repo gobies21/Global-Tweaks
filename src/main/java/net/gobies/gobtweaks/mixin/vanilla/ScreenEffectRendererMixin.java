@@ -1,7 +1,7 @@
 package net.gobies.gobtweaks.mixin.vanilla;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.gobies.gobtweaks.CommonConfig;
+import net.gobies.gobtweaks.config.CommonConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ScreenEffectRenderer;
 import net.minecraft.world.effect.MobEffects;

@@ -5,7 +5,7 @@ license = "GNU General Public License"
 
 [[mods]]
 modId="gobtweaks"
-version="0.5.0"
+version="0.5.5"
 displayName="Gob Tweaks"
 authors="gobies"
 description='''Various tweaks for many different mods and vanilla features'''
@@ -26,3 +26,5 @@ side="BOTH"
 
 [modproperties.gobtweaks]
 configuredBackground="minecraft:textures/block/stone_bricks.png"
+catalogueImageIcon = "icon.png"
+

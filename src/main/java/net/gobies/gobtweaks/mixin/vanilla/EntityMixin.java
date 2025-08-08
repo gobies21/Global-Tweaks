@@ -1,6 +1,6 @@
 package net.gobies.gobtweaks.mixin.vanilla;
 
-import net.gobies.gobtweaks.CommonConfig;
+import net.gobies.gobtweaks.config.CommonConfig;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;

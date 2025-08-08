@@ -24,7 +24,7 @@ public class DamagePopupTriggersMixin {
     private static void onHurt(LivingEntity target, DamageSource source, float damage, CallbackInfo ci) {
         Entity attacker = source.getEntity();
         if (ModLoadedUtil.isPMLLoaded()) {
-            if (source.is(PMLDamageTypes.PLAYER_CRITICAL_KEY)) {
+            if (PMLDamageTypes.isCritical(source)) {
                 DamagePopupTriggers.triggerEffect(attacker, target, damage, ((CritTracker) target).blessfulled$hasCritted() ? 1 : 0);
                 ci.cancel();
             }

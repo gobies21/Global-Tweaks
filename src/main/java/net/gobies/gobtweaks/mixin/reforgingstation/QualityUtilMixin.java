@@ -5,7 +5,7 @@ import com.github.alexthe666.iceandfire.item.IafItemRegistry;
 import com.github.alexthe666.iceandfire.item.ItemDragonArmor;
 import com.oblivioussp.spartanweaponry.item.ThrowingWeaponItem;
 import fuzs.mutantmonsters.world.item.ArmorBlockItem;
-import net.gobies.gobtweaks.CommonConfig;
+import net.gobies.gobtweaks.config.CommonConfig;
 import net.gobies.gobtweaks.util.GTUtils;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraft.world.item.Item;

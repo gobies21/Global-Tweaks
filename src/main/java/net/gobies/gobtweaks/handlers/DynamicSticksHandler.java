@@ -1,7 +1,7 @@
 package net.gobies.gobtweaks.handlers;
 
 import com.ferreusveritas.dynamictrees.data.DTBlockTags;
-import net.gobies.gobtweaks.CommonConfig;
+import net.gobies.gobtweaks.config.CommonConfig;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
@@ -15,9 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber
 public class DynamicSticksHandler {
 
     @SubscribeEvent

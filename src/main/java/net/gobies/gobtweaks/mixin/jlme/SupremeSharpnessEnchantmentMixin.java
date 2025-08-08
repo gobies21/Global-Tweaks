@@ -1,7 +1,7 @@
 package net.gobies.gobtweaks.mixin.jlme;
 
 import com.kettle.jlme.enchantment.SupremeSharpnessEnchantment;
-import net.gobies.gobtweaks.CommonConfig;
+import net.gobies.gobtweaks.config.CommonConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;

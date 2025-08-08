@@ -4,7 +4,7 @@ import com.oblivioussp.spartanweaponry.api.tags.ModItemTags;
 import com.oblivioussp.spartanweaponry.capability.IOilHandler;
 import com.oblivioussp.spartanweaponry.event.ClientEventHandler;
 import com.oblivioussp.spartanweaponry.init.ModCapabilities;
-import net.gobies.gobtweaks.CommonConfig;
+import net.gobies.gobtweaks.config.CommonConfig;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.common.util.LazyOptional;

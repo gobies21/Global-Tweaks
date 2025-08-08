@@ -1,5 +1,6 @@
-package net.gobies.gobtweaks;
+package net.gobies.gobtweaks.config;
 
+import net.gobies.gobtweaks.GobTweaks;
 import net.gobies.gobtweaks.util.BranchEnum;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -49,6 +50,10 @@ public class CommonConfig {
     public static float additional_stick_chance;
     public static ForgeConfigSpec.ConfigValue<Boolean> DISABLE_OIL_TOOLTIP;
     public static boolean disable_oil_tooltip;
+    public static ForgeConfigSpec.ConfigValue<Boolean> THIRST_ATTACK_EXHAUSTION;
+    public static boolean thirst_attack_exhaustion;
+    public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_POWER_CROSSBOWS;
+    public static boolean allow_power_crossbows;
 
 
     public CommonConfig() {
@@ -74,6 +79,8 @@ public class CommonConfig {
             dragon_ice_immune = DRAGON_ICE_IMMUNE.get();
             additional_stick_chance = ADDITIONAL_STICK_CHANCE.get().floatValue();
             disable_oil_tooltip = DISABLE_OIL_TOOLTIP.get();
+            thirst_attack_exhaustion = THIRST_ATTACK_EXHAUSTION.get();
+            allow_power_crossbows = ALLOW_POWER_CROSSBOWS.get();
         }
     }
 
@@ -82,6 +89,7 @@ public class CommonConfig {
         LIGHTNING_DESTROY_ITEM = BUILDER.comment("Prevents lightning from destroying items").define("Lightning_Prevention", true);
         GRASS_ATTACK = BUILDER.comment("Allows attacking through grass without breaking it").define("Attack_Through_Grass", true);
         NO_FIRE_OVERLAY = BUILDER.comment("Makes having fire resistance or being in creative not allow entities to get set on fire").define("No_Fire_Overlay", true);
+        ALLOW_POWER_CROSSBOWS = BUILDER.comment("Allows all crossbows to be able to be enchanted with power").define("Allow_Power", false);
         BUILDER.pop();
 
         BUILDER.push("Refurbished_Furniture");
@@ -117,6 +125,10 @@ public class CommonConfig {
 
         BUILDER.push("Spartan_Weaponry");
         DISABLE_OIL_TOOLTIP = BUILDER.comment("Disable the oil tooltip that displays on weapons without weapon oil applied").define("Disable_Oil_Tooltip", false);
+        BUILDER.pop();
+
+        BUILDER.push("Thirst_was_Taken");
+        THIRST_ATTACK_EXHAUSTION = BUILDER.comment("Makes attacking entities slightly exhaust thirst").define("Thirst_Attack_Exhaustion", true);
         BUILDER.pop();
 
         SPEC = BUILDER.build();

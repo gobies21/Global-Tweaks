@@ -3,8 +3,6 @@ package net.gobies.gobtweaks.util;
 import net.minecraftforge.fml.ModList;
 
 public class ModLoadedUtil {
-    public ModLoadedUtil() {
-    }
 
     public static boolean isCuriosLoaded() {
         return ModList.get().isLoaded("curios");
