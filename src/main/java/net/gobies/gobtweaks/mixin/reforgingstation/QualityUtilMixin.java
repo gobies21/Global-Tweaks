@@ -49,6 +49,14 @@ public abstract class QualityUtilMixin {
             }
             PET_ARMOR_ITEMS.addAll(dragonArmorItems);
         }
+        if (ModLoadedUtil.isSpartanWeaponryLoaded()) {
+            for (Item item : ForgeRegistries.ITEMS.getValues()) {
+                if (item instanceof ThrowingWeaponItem) {
+                    TOOL_ITEMS.add(item);
+                }
+            }
+        }
+
     }
 
     // Adds a config for custom weapons to be able to receive qualities
@@ -61,9 +69,6 @@ public abstract class QualityUtilMixin {
     private static void addToolQuality(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         Item tool = stack.getItem();
         if (TOOL_ITEMS.contains(tool)) {
-            cir.setReturnValue(true);
-        }
-        if (ModLoadedUtil.isSpartanWeaponryLoaded() && tool instanceof ThrowingWeaponItem) {
             cir.setReturnValue(true);
         }
     }

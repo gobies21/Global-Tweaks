@@ -83,4 +83,8 @@ public class ModLoadedUtil {
     public static boolean isColdSweatLoaded() {
         return ModList.get().isLoaded("cold_sweat");
     }
+
+    public static boolean isSpartanFireLoaded() {
+        return ModList.get().isLoaded("spartanfire");
+    }
 }

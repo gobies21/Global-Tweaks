@@ -71,7 +71,7 @@ public class QualityMixin {
             remap = false,
             cancellable = true
     )
-    // Sets any item with a repair material to be able to be reforged
+    // Makes sure to check for the items repair material if it has one for reforging
     private static void reforgeMaterial(ItemStack stack, ItemStack materialStack, CallbackInfoReturnable<Boolean> cir) {
         if (stack.getItem().isValidRepairItem(stack, materialStack) && CommonConfig.VALID_REPAIR_MATERIALS.get()) {
             cir.setReturnValue(true);

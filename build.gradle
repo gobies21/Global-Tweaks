@@ -95,7 +95,7 @@ dependencies {
     implementation fg.deobf("curse.maven:framework-549225:6531428")
     implementation fg.deobf("curse.maven:carry-on-274259:4882500")
     implementation fg.deobf("curse.maven:locks-unofficial-1128357:6115787")
-    implementation fg.deobf("curse.maven:just-a-lot-more-enchantments-865111:6684663")
+    implementation fg.deobf("curse.maven:just-a-lot-more-enchantments-865111:6825220")
     implementation fg.deobf("curse.maven:progressive-tweaks-1163889:6645509")
     implementation fg.deobf("curse.maven:progressive-mechanics-library-1235043:6454177")
     implementation fg.deobf("curse.maven:blessfulled-1182590:6624691")
@@ -114,7 +114,7 @@ dependencies {
     implementation fg.deobf("curse.maven:simply-potion-rings-1217574:6557539")
     implementation fg.deobf("curse.maven:first-aid-276837:5531834")
     implementation fg.deobf("curse.maven:ice-and-fire-dragons-264231:5633453")
-    implementation fg.deobf("curse.maven:spartan-weaponry-278141:5597663")
+    implementation fg.deobf("curse.maven:spartan-weaponry-278141:6842571")
     implementation fg.deobf("curse.maven:citadel-331936:6702068")
     implementation fg.deobf("curse.maven:thirst-was-taken-679270:6660408")
     implementation fg.deobf("curse.maven:dungeon-crawl-324973:6047153")
@@ -123,12 +123,20 @@ dependencies {
     implementation fg.deobf("curse.maven:dynamictrees-252818:6655713")
     implementation fg.deobf("curse.maven:forgotten-battle-towers-1151901:6554491")
     implementation fg.deobf("curse.maven:cold-sweat-506194:6503192")
-    implementation fg.deobf("curse.maven:potion-descriptions-neo-forge-1122213:5815366")
+
+    implementation fg.deobf("curse.maven:spartan-weaponry-ice-and-fire-606315:5608442")
+    implementation fg.deobf("curse.maven:spartan-weaponry-addon-toolkit-1051658:6863433")
+
+    implementation fg.deobf("curse.maven:ice-and-fire-spartan-weaponry-extras-1191816:6150005")
+    implementation fg.deobf("curse.maven:dungeons-mobs-port-1214518:6785377")
+    implementation fg.deobf("curse.maven:more-artifacts-1143299:6694337")
 
     runtimeOnly(fg.deobf("curse.maven:configured-457570:5180900"))
     runtimeOnly(fg.deobf("curse.maven:catalogue-459701:4766090"))
     runtimeOnly(fg.deobf("curse.maven:crafttweaker-239197:6256146"))
+    runtimeOnly(fg.deobf("curse.maven:neat-238372:5838485"))
     compileOnly(fg.deobf("curse.maven:itemphysic-258587:6450992"))
+    implementation fg.deobf("curse.maven:no-tree-punching-289043:4599926")
 }
 
 mixin {

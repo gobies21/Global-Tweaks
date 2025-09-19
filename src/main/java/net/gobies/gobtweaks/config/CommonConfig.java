@@ -22,12 +22,22 @@ public class CommonConfig {
     public static boolean grass_attack;
     public static ForgeConfigSpec.ConfigValue<Boolean> NO_FIRE_OVERLAY;
     public static boolean no_fire_overlay;
+    public static ForgeConfigSpec.ConfigValue<Boolean> EXTRA_CROSSBOWS_ENCHANTS;
+    public static boolean extra_crossbows_enchants;
+    public static ForgeConfigSpec.ConfigValue<Boolean> DISABLE_ADVANCEMENTS;
+    public static boolean disable_advancements;
+    public static ForgeConfigSpec.ConfigValue<Boolean> ALWAYS_PICKUP;
+    public static boolean always_pickup;
     public static ForgeConfigSpec.ConfigValue<Boolean> CRATE_INCREASE_ROWS;
     public static boolean crates_increase_rows;
     public static ForgeConfigSpec.ConfigValue<Double> SUPREME_SHARPNESS_BASE_DAMAGE;
     public static float supreme_sharpness_base_damage;
     public static ForgeConfigSpec.ConfigValue<Double> SUPREME_SHARPNESS_LEVEL_DAMAGE;
     public static float supreme_sharpness_level_damage;
+    public static ForgeConfigSpec.ConfigValue<Boolean> TRADABLE_GLOBAL_ENCHANTMENTS;
+    public static boolean tradable_global_enchantments;
+    public static ForgeConfigSpec.ConfigValue<Boolean> TRADABLE_RUNE_ENCHANTMENTS;
+    public static boolean tradable_rune_enchantments;
     public static ForgeConfigSpec.ConfigValue<Boolean> MAGE_QUALITIES;
     public static boolean mage_qualities;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> ADD_TOOL_QUALITIES;
@@ -46,14 +56,17 @@ public class CommonConfig {
     public static boolean dragon_fire_immune;
     public static ForgeConfigSpec.ConfigValue<Boolean> DRAGON_ICE_IMMUNE;
     public static boolean dragon_ice_immune;
+    public static ForgeConfigSpec.ConfigValue<Boolean> DRAGON_ENCHANTED_GLOW;
+    public static boolean dragon_enchanted_glow;
     public static ForgeConfigSpec.ConfigValue<Double> ADDITIONAL_STICK_CHANCE;
     public static float additional_stick_chance;
     public static ForgeConfigSpec.ConfigValue<Boolean> DISABLE_OIL_TOOLTIP;
     public static boolean disable_oil_tooltip;
     public static ForgeConfigSpec.ConfigValue<Boolean> THIRST_ATTACK_EXHAUSTION;
     public static boolean thirst_attack_exhaustion;
-    public static ForgeConfigSpec.ConfigValue<Boolean> ALLOW_POWER_CROSSBOWS;
-    public static boolean allow_power_crossbows;
+
+    public static ForgeConfigSpec.ConfigValue<Boolean> DEBUG;
+    public static boolean debug;
 
 
     public CommonConfig() {
@@ -65,9 +78,14 @@ public class CommonConfig {
             lightning_destroy_item = LIGHTNING_DESTROY_ITEM.get();
             grass_attack = GRASS_ATTACK.get();
             no_fire_overlay = NO_FIRE_OVERLAY.get();
+            extra_crossbows_enchants = EXTRA_CROSSBOWS_ENCHANTS.get();
+            disable_advancements = DISABLE_ADVANCEMENTS.get();
+            always_pickup = ALWAYS_PICKUP.get();
             crates_increase_rows = CRATE_INCREASE_ROWS.get();
             supreme_sharpness_base_damage = SUPREME_SHARPNESS_BASE_DAMAGE.get().floatValue();
             supreme_sharpness_level_damage = SUPREME_SHARPNESS_LEVEL_DAMAGE.get().floatValue();
+            tradable_global_enchantments = TRADABLE_GLOBAL_ENCHANTMENTS.get();
+            tradable_rune_enchantments = TRADABLE_RUNE_ENCHANTMENTS.get();
             mage_qualities = MAGE_QUALITIES.get();
             add_tool_qualities = ADD_TOOL_QUALITIES.get();
             add_shield_qualities = ADD_SHIELD_QUALITIES.get();
@@ -77,19 +95,26 @@ public class CommonConfig {
             break_branch_type = BREAK_BRANCH_TYPE.get();
             dragon_fire_immune = DRAGON_FIRE_IMMUNE.get();
             dragon_ice_immune = DRAGON_ICE_IMMUNE.get();
+            dragon_enchanted_glow = DRAGON_ENCHANTED_GLOW.get();
             additional_stick_chance = ADDITIONAL_STICK_CHANCE.get().floatValue();
             disable_oil_tooltip = DISABLE_OIL_TOOLTIP.get();
             thirst_attack_exhaustion = THIRST_ATTACK_EXHAUSTION.get();
-            allow_power_crossbows = ALLOW_POWER_CROSSBOWS.get();
+            debug = DEBUG.get();
         }
     }
 
     static {
+        BUILDER.push("General");
+        DEBUG = BUILDER.comment("Enable debug mode (experimental features)").define("Debug", false);
+        BUILDER.pop();
+
         BUILDER.push("Vanilla");
         LIGHTNING_DESTROY_ITEM = BUILDER.comment("Prevents lightning from destroying items").define("Lightning_Prevention", true);
         GRASS_ATTACK = BUILDER.comment("Allows attacking through grass without breaking it").define("Attack_Through_Grass", true);
         NO_FIRE_OVERLAY = BUILDER.comment("Makes having fire resistance or being in creative not allow entities to get set on fire").define("No_Fire_Overlay", true);
-        ALLOW_POWER_CROSSBOWS = BUILDER.comment("Allows all crossbows to be able to be enchanted with power").define("Allow_Power", false);
+        EXTRA_CROSSBOWS_ENCHANTS = BUILDER.comment("Allows crossbows to be enchanted with normal bow enchantments").define("Extra_Crossbows_Enchants", false);
+        DISABLE_ADVANCEMENTS = BUILDER.comment("Disables all advancements from the game").define("Disable_Advancements", false);
+        ALWAYS_PICKUP = BUILDER.comment("Allows mobs to always pickup dropped items").define("Always_Pickup", false);
         BUILDER.pop();
 
         BUILDER.push("Refurbished_Furniture");
@@ -99,6 +124,8 @@ public class CommonConfig {
         BUILDER.push("JLME");
         SUPREME_SHARPNESS_BASE_DAMAGE = BUILDER.comment("Supreme sharpness base damage").define("Supreme_Sharpness_Base_Damage", 4.0);
         SUPREME_SHARPNESS_LEVEL_DAMAGE = BUILDER.comment("Supreme sharpness damage per level").define("Supreme_Sharpness_Level_Damage", 2.0);
+        TRADABLE_GLOBAL_ENCHANTMENTS = BUILDER.comment("Makes all non rune enchantments tradable").define("Tradable_Enchantments", false);
+        TRADABLE_RUNE_ENCHANTMENTS = BUILDER.comment("Makes all rune enchantments tradable").define("Tradable_Runes", false);
         BUILDER.pop();
 
         BUILDER.push("Reforging_Station");
@@ -117,6 +144,7 @@ public class CommonConfig {
         BREAK_BRANCH_TYPE = BUILDER.comment("Size of the branches that ice and fire dragons are allowed to destroy").defineEnum("Dynamic_Tree_Branch", BranchEnum.ONLY_BRANCHES, BranchEnum.values());
         DRAGON_FIRE_IMMUNE = BUILDER.comment("Makes fire resistance give immunity to fire dragon breath damage").define("Dragon_Fire_Immune", true);
         DRAGON_ICE_IMMUNE = BUILDER.comment("Makes ice resistance from cold sweat give immunity to ice dragon breath damage").define("Dragon_Ice_Immune", true);
+        DRAGON_ENCHANTED_GLOW = BUILDER.comment("Makes blooded dragon bone weapons have enchanted glow").define("Dragon_Enchanted_Glow", false);
         BUILDER.pop();
 
         BUILDER.push("Dynamic_Trees");

@@ -16,14 +16,17 @@ public class EnchantmentMixin {
     @Inject(
             method = "canEnchant",
             at = @At("HEAD"),
-            remap = false,
             cancellable = true
     )
+    // Allow power to be put on crossbows
     private void canEnchantCrossbow(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        if (CommonConfig.ALLOW_POWER_CROSSBOWS.get()) {
-            Enchantment enchantment = (Enchantment) (Object) this;
-            if (stack.getItem() instanceof CrossbowItem && enchantment.equals(Enchantments.POWER_ARROWS)) {
-                cir.setReturnValue(true);
+        Enchantment enchantment = (Enchantment) (Object) this;
+        if (stack.getItem() instanceof CrossbowItem) {
+            if (enchantment.equals(Enchantments.POWER_ARROWS)
+                    || enchantment.equals(Enchantments.INFINITY_ARROWS)
+                    || enchantment.equals(Enchantments.FLAMING_ARROWS)
+                    || enchantment.equals(Enchantments.PUNCH_ARROWS)) {
+                cir.setReturnValue(CommonConfig.EXTRA_CROSSBOWS_ENCHANTS.get());
             }
         }
     }
