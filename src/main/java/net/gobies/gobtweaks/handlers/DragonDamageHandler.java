@@ -1,7 +1,6 @@
 package net.gobies.gobtweaks.handlers;
 
 import com.github.alexthe666.iceandfire.misc.IafDamageRegistry;
-import com.momosoftworks.coldsweat.core.init.EffectInit;
 import net.gobies.gobtweaks.config.CommonConfig;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraft.world.damagesource.DamageSource;
@@ -23,7 +22,7 @@ public class DragonDamageHandler {
                 }
             }
             if (ModLoadedUtil.isColdSweatLoaded() && CommonConfig.DRAGON_ICE_IMMUNE.get()) {
-                if (entity.hasEffect(EffectInit.ICE_RESISTANCE.get()) && source.is(IafDamageRegistry.DRAGON_ICE_TYPE)) {
+                if (entity.hasEffect(com.momosoftworks.coldsweat.core.init.EffectInit.ICE_RESISTANCE.get()) && source.is(IafDamageRegistry.DRAGON_ICE_TYPE)) {
                     event.setCanceled(true);
                 }
             }

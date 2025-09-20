@@ -1,6 +1,5 @@
 package net.gobies.gobtweaks.mixin.iceandfire;
 
-import com.ferreusveritas.dynamictrees.data.DTBlockTags;
 import com.github.alexthe666.iceandfire.entity.util.DragonUtils;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraft.world.entity.Entity;
@@ -21,7 +20,7 @@ public class DragonUtilsMixin {
     // Adds branches to the allowed blocks that dragons can break
     private static void canDragonBreak(BlockState state, Entity entity, CallbackInfoReturnable<Boolean> cir) {
         if (ModLoadedUtil.isDynamicTreesLoaded()) {
-            if (state.is(DTBlockTags.BRANCHES)) {
+            if (state.is(com.ferreusveritas.dynamictrees.data.DTBlockTags.BRANCHES)) {
                 cir.setReturnValue(true);
             }
         }

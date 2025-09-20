@@ -67,7 +67,7 @@ public class CrossbowItemMixin {
         }
     }
 
-        @Unique
+    @Unique
     private static void gobTweaks$addChargedProjectile(ItemStack pCrossbowStack, ItemStack pAmmoStack) {
         CompoundTag compoundtag = pCrossbowStack.getOrCreateTag();
         ListTag listtag;

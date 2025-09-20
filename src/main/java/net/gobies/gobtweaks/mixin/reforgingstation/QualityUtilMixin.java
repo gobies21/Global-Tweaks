@@ -1,16 +1,11 @@
 package net.gobies.gobtweaks.mixin.reforgingstation;
 
 import com.dplayend.reforgingstation.common.quality.QualityUtil;
-import com.github.alexthe666.iceandfire.item.IafItemRegistry;
-import com.github.alexthe666.iceandfire.item.ItemDragonArmor;
-import com.oblivioussp.spartanweaponry.item.ThrowingWeaponItem;
-import fuzs.mutantmonsters.world.item.ArmorBlockItem;
 import net.gobies.gobtweaks.config.CommonConfig;
 import net.gobies.gobtweaks.util.GTUtils;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -36,27 +31,8 @@ public abstract class QualityUtilMixin {
     private static final Set<Item> PET_ARMOR_ITEMS = new HashSet<>();
 
     static {
-        if (ModLoadedUtil.isIceandFireLoaded()) {
-            PET_ARMOR_ITEMS.add(IafItemRegistry.IRON_HIPPOGRYPH_ARMOR.get());
-            PET_ARMOR_ITEMS.add(IafItemRegistry.GOLD_HIPPOGRYPH_ARMOR.get());
-            PET_ARMOR_ITEMS.add(IafItemRegistry.DIAMOND_HIPPOGRYPH_ARMOR.get());
-
-            Set<Item> dragonArmorItems = new HashSet<>();
-            for (Item item : ForgeRegistries.ITEMS.getValues()) {
-                if (item instanceof ItemDragonArmor) {
-                    dragonArmorItems.add(item);
-                }
-            }
-            PET_ARMOR_ITEMS.addAll(dragonArmorItems);
-        }
-        if (ModLoadedUtil.isSpartanWeaponryLoaded()) {
-            for (Item item : ForgeRegistries.ITEMS.getValues()) {
-                if (item instanceof ThrowingWeaponItem) {
-                    TOOL_ITEMS.add(item);
-                }
-            }
-        }
-
+        PET_ARMOR_ITEMS.addAll(GTUtils.ADDITIONAL_PET_ITEMS);
+        TOOL_ITEMS.addAll(GTUtils.ADDITIONAL_TOOL_ITEMS);
     }
 
     // Adds a config for custom weapons to be able to receive qualities
@@ -120,7 +96,7 @@ public abstract class QualityUtilMixin {
     )
     private static void addHelmetQuality(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         Item armor = stack.getItem();
-        if (ModLoadedUtil.isMutantMonstersLoaded() && armor instanceof ArmorBlockItem) {
+        if (GTUtils.isSkullHelmet(armor.getDefaultInstance())) {
             cir.setReturnValue(true);
         }
     }

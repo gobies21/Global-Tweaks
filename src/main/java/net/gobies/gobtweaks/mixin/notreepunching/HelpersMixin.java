@@ -10,7 +10,6 @@ import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(Helpers.class)
 public class HelpersMixin {
-
     /**
      * @author gobies
      * @reason fix picking up loose rocks not going directly into inventory when using item-physics custom pickup

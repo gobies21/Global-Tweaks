@@ -53,7 +53,7 @@ public class ModLoadedUtil {
     }
 
     public static boolean isCarryOnLoaded() {
-        return ModList.get().isLoaded("reforgingstation");
+        return ModList.get().isLoaded("carryon");
     }
 
     public static boolean isThirstLoaded() {

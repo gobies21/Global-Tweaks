@@ -1,7 +1,5 @@
 package net.gobies.gobtweaks.mixin.iceandfire;
 
-import com.ferreusveritas.dynamictrees.block.branch.BasicBranchBlock;
-import com.ferreusveritas.dynamictrees.data.DTBlockTags;
 import com.github.alexthe666.iceandfire.entity.EntityDragonBase;
 import net.gobies.gobtweaks.config.CommonConfig;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
@@ -24,9 +22,9 @@ public class EntityDragonBaseMixin {
     // Allows dragons to break dynamic trees branches
     private void canDestroyBlock(BlockPos pos, BlockState state, float hardness, EntityDragonBase entity, CallbackInfoReturnable<Boolean> cir) {
         if (ModLoadedUtil.isDynamicTreesLoaded()) {
-            if (state.is(DTBlockTags.BRANCHES)) {
+            if (state.is(com.ferreusveritas.dynamictrees.data.DTBlockTags.BRANCHES)) {
                 Block block = state.getBlock();
-                if (block instanceof BasicBranchBlock branchBlock) {
+                if (block instanceof com.ferreusveritas.dynamictrees.block.branch.BasicBranchBlock branchBlock) {
                     int radius = branchBlock.getRadius(state);
                     if (radius <= CommonConfig.BREAK_BRANCH_TYPE.get().getValue()) {
                         cir.setReturnValue(true);
@@ -36,4 +34,3 @@ public class EntityDragonBaseMixin {
         }
     }
 }
-

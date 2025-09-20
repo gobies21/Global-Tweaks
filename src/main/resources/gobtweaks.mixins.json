@@ -3,6 +3,7 @@
   "package": "net.gobies.gobtweaks.mixin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "gobtweaks.mixins.refmap.json",
+  "plugin": "net.gobies.gobtweaks.GTMixinPlugin",
   "mixins": [
     "blessfulled.DamagePopupTriggersMixin",
     "blessfulled.SpecialSoundsTriggersMixin",
