@@ -95,7 +95,7 @@ dependencies {
     implementation fg.deobf("curse.maven:framework-549225:6531428")
     implementation fg.deobf("curse.maven:carry-on-274259:4882500")
     implementation fg.deobf("curse.maven:locks-unofficial-1128357:6115787")
-    implementation fg.deobf("curse.maven:just-a-lot-more-enchantments-865111:6825220")
+    implementation fg.deobf("curse.maven:just-a-lot-more-enchantments-865111:7218799")
     implementation fg.deobf("curse.maven:progressive-tweaks-1163889:6645509")
     implementation fg.deobf("curse.maven:progressive-mechanics-library-1235043:6454177")
     implementation fg.deobf("curse.maven:blessfulled-1182590:6624691")
@@ -137,6 +137,7 @@ dependencies {
     runtimeOnly(fg.deobf("curse.maven:neat-238372:5838485"))
     compileOnly(fg.deobf("curse.maven:itemphysic-258587:6450992"))
     implementation fg.deobf("curse.maven:no-tree-punching-289043:4599926")
+    runtimeOnly(fg.deobf("curse.maven:just-enough-effect-descriptions-jeed-532286:6172935"))
 }
 
 mixin {

@@ -28,6 +28,8 @@ public class CommonConfig {
     public static boolean disable_advancements;
     public static ForgeConfigSpec.ConfigValue<Boolean> ALWAYS_PICKUP;
     public static boolean always_pickup;
+    public static ForgeConfigSpec.ConfigValue<Boolean> FRIENDLY_FIRE;
+    public static boolean friendly_fire;
     public static ForgeConfigSpec.ConfigValue<Boolean> CRATE_INCREASE_ROWS;
     public static boolean crates_increase_rows;
     public static ForgeConfigSpec.ConfigValue<Double> SUPREME_SHARPNESS_BASE_DAMAGE;
@@ -46,6 +48,14 @@ public class CommonConfig {
     public static List<? extends String> add_shield_qualities;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> ADD_BOW_QUALITIES;
     public static List<? extends String> add_bow_qualities;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> BLACKLIST_TOOL_QUALITIES;
+    public static List<? extends String> blacklist_tool_qualities;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> BLACKLIST_SHIELD_QUALITIES;
+    public static List<? extends String> blacklist_shield_qualities;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> BLACKLIST_BOW_QUALITIES;
+    public static List<? extends String> blacklist_bow_qualities;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> ENTITY_QUALITIES;
+    public static List<? extends String> entity_qualities;
     public static ForgeConfigSpec.ConfigValue<Boolean> VALID_REPAIR_MATERIALS;
     public static boolean valid_repair_materials;
     public static ForgeConfigSpec.ConfigValue<Double> DUNGEON_VANISH_CHANCE;
@@ -81,6 +91,7 @@ public class CommonConfig {
             extra_crossbows_enchants = EXTRA_CROSSBOWS_ENCHANTS.get();
             disable_advancements = DISABLE_ADVANCEMENTS.get();
             always_pickup = ALWAYS_PICKUP.get();
+            friendly_fire = FRIENDLY_FIRE.get();
             crates_increase_rows = CRATE_INCREASE_ROWS.get();
             supreme_sharpness_base_damage = SUPREME_SHARPNESS_BASE_DAMAGE.get().floatValue();
             supreme_sharpness_level_damage = SUPREME_SHARPNESS_LEVEL_DAMAGE.get().floatValue();
@@ -90,6 +101,10 @@ public class CommonConfig {
             add_tool_qualities = ADD_TOOL_QUALITIES.get();
             add_shield_qualities = ADD_SHIELD_QUALITIES.get();
             add_bow_qualities = ADD_BOW_QUALITIES.get();
+            blacklist_tool_qualities = BLACKLIST_TOOL_QUALITIES.get();
+            blacklist_shield_qualities = BLACKLIST_SHIELD_QUALITIES.get();
+            blacklist_bow_qualities = BLACKLIST_BOW_QUALITIES.get();
+            entity_qualities = ENTITY_QUALITIES.get();
             valid_repair_materials = VALID_REPAIR_MATERIALS.get();
             dungeon_vanish_chance = DUNGEON_VANISH_CHANCE.get().floatValue();
             break_branch_type = BREAK_BRANCH_TYPE.get();
@@ -115,6 +130,7 @@ public class CommonConfig {
         EXTRA_CROSSBOWS_ENCHANTS = BUILDER.comment("Allows crossbows to be enchanted with normal bow enchantments").define("Extra_Crossbows_Enchants", false);
         DISABLE_ADVANCEMENTS = BUILDER.comment("Disables all advancements from the game").define("Disable_Advancements", false);
         ALWAYS_PICKUP = BUILDER.comment("Allows mobs to always pickup dropped items").define("Always_Pickup", false);
+        FRIENDLY_FIRE = BUILDER.comment("Disables being able to attack your own tames").define("Friendly_Fire", true);
         BUILDER.pop();
 
         BUILDER.push("Refurbished_Furniture");
@@ -133,6 +149,10 @@ public class CommonConfig {
         ADD_TOOL_QUALITIES = BUILDER.comment("List of tools/weapons to be able to receive qualities").defineList("Tool_Qualities", List.of("cataclysm:the_incinerator", "cataclysm:gauntlet_of_guard", "cataclysm:gauntlet_of_bulwark", "cataclysm:gauntlet_of_maelstrom", "cataclysm:soul_render", "cataclysm:the_annihilator", "cataclysm:the_immolator", "cataclysm:tidal_claws", "cataclysm:coral_spear", "cataclysm:coral_bardiche", "cataclysm:meat_shredder", "cataclysm:astrape", "cataclysm:ceraunus", "cataclysm:ancient_spear"), o -> true);
         ADD_SHIELD_QUALITIES = BUILDER.comment("List of shields to be able to receive qualities").defineList("Shield_Qualities", List.of("cataclysm:bulwark_of_the_flame"), o -> true);
         ADD_BOW_QUALITIES = BUILDER.comment("List of bows to be able to receive qualities").defineList("Bow_Qualities", List.of(), o -> true);
+        BLACKLIST_TOOL_QUALITIES = BUILDER.comment("List of tools/weapons to be unable to receive qualities").defineList("Blacklisted_Tool_Qualities", List.of(), o -> true);
+        BLACKLIST_BOW_QUALITIES = BUILDER.comment("List of bows to be unable to receive qualities").defineList("Blacklisted_Bow_Qualities", List.of(), o -> true);
+        BLACKLIST_SHIELD_QUALITIES = BUILDER.comment("List of shields to be unable to receive qualities").defineList("Blacklisted_Shield_Qualities", List.of(), o -> true);
+        ENTITY_QUALITIES = BUILDER.comment("List of entities to be able to receive qualities").defineList("Entity_Qualities", List.of("minecraft:horse"), o -> true);
         VALID_REPAIR_MATERIALS = BUILDER.comment("Allows all reforge-able gear to pull from their repair materials for reforging").define("Valid_Repair_Materials", true);
         BUILDER.pop();
 

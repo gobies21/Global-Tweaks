@@ -17,7 +17,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
         AdvancedProtectionEnchantment.class,
         SupremeColdAspectEnchantment.class,
         SupremeFireAspectEnchantment.class,
-        SupremeSharpnessEnchantment.class}
+        SupremeSharpnessEnchantment.class,
+        RepairableEnchantment.class}
 )
 public class TradableEnchantmentsMixin {
     @Inject(

@@ -36,6 +36,10 @@ public class ModLoadedUtil {
         return ModList.get().isLoaded("iceandfire");
     }
 
+    public static boolean isIceandFire2Loaded() {
+        return ModList.get().isLoaded("iceandfire2");
+    }
+
     public static boolean isPMLLoaded() {
         return ModList.get().isLoaded("pml");
     }

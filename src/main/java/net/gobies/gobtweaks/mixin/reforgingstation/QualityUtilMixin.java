@@ -19,20 +19,29 @@ import java.util.Set;
 public abstract class QualityUtilMixin {
 
     @Unique
-    private static final Set<Item> TOOL_ITEMS = GTUtils.createItemSet(CommonConfig.ADD_TOOL_QUALITIES.get());
+    private static final Set<Item> ADDITIONAL_TOOL_ITEMS = GTUtils.createItemSet(CommonConfig.ADD_TOOL_QUALITIES.get());
 
     @Unique
-    private static final Set<Item> SHIELD_ITEMS = GTUtils.createItemSet(CommonConfig.ADD_SHIELD_QUALITIES.get());
+    private static final Set<Item> BLACKLIST_TOOL_ITEMS = GTUtils.createItemSet(CommonConfig.BLACKLIST_TOOL_QUALITIES.get());
 
     @Unique
-    private static final Set<Item> BOW_ITEMS = GTUtils.createItemSet(CommonConfig.ADD_BOW_QUALITIES.get());
+    private static final Set<Item> ADDITIONAL_SHIELD_ITEMS = GTUtils.createItemSet(CommonConfig.ADD_SHIELD_QUALITIES.get());
 
     @Unique
-    private static final Set<Item> PET_ARMOR_ITEMS = new HashSet<>();
+    private static final Set<Item> BLACKLIST_SHIELD_ITEMS = GTUtils.createItemSet(CommonConfig.BLACKLIST_SHIELD_QUALITIES.get());
+
+    @Unique
+    private static final Set<Item> ADDITIONAL_BOW_ITEMS = GTUtils.createItemSet(CommonConfig.ADD_BOW_QUALITIES.get());
+
+    @Unique
+    private static final Set<Item> BLACKLIST_BOW_ITEMS = GTUtils.createItemSet(CommonConfig.BLACKLIST_BOW_QUALITIES.get());
+
+    @Unique
+    private static final Set<Item> ADDITIONAL_PET_ARMOR_ITEMS = new HashSet<>();
 
     static {
-        PET_ARMOR_ITEMS.addAll(GTUtils.ADDITIONAL_PET_ITEMS);
-        TOOL_ITEMS.addAll(GTUtils.ADDITIONAL_TOOL_ITEMS);
+        ADDITIONAL_PET_ARMOR_ITEMS.addAll(GTUtils.ADDITIONAL_PET_ITEMS);
+        ADDITIONAL_TOOL_ITEMS.addAll(GTUtils.ADDITIONAL_TOOL_ITEMS);
     }
 
     // Adds a config for custom weapons to be able to receive qualities
@@ -44,8 +53,11 @@ public abstract class QualityUtilMixin {
     )
     private static void addToolQuality(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         Item tool = stack.getItem();
-        if (TOOL_ITEMS.contains(tool)) {
+        if (ADDITIONAL_TOOL_ITEMS.contains(tool)) {
             cir.setReturnValue(true);
+        }
+        if (BLACKLIST_TOOL_ITEMS.contains(tool)) {
+            cir.setReturnValue(false);
         }
     }
 
@@ -57,8 +69,11 @@ public abstract class QualityUtilMixin {
     )
     private static void addShieldQuality(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         Item shield = stack.getItem();
-        if (SHIELD_ITEMS.contains(shield)) {
+        if (ADDITIONAL_SHIELD_ITEMS.contains(shield)) {
             cir.setReturnValue(true);
+        }
+        if (BLACKLIST_SHIELD_ITEMS.contains(shield)) {
+            cir.setReturnValue(false);
         }
     }
 
@@ -70,8 +85,11 @@ public abstract class QualityUtilMixin {
     )
     private static void addBowQuality(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         Item bow = stack.getItem();
-        if (BOW_ITEMS.contains(bow)) {
+        if (ADDITIONAL_BOW_ITEMS.contains(bow)) {
             cir.setReturnValue(true);
+        }
+        if (BLACKLIST_BOW_ITEMS.contains(bow)) {
+            cir.setReturnValue(false);
         }
     }
 
@@ -83,7 +101,7 @@ public abstract class QualityUtilMixin {
     )
     private static void addPetQuality(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         Item petArmor = stack.getItem();
-        if (ModLoadedUtil.isIceandFireLoaded() && PET_ARMOR_ITEMS.contains(petArmor)) {
+        if (ModLoadedUtil.isIceandFireLoaded() && ADDITIONAL_PET_ARMOR_ITEMS.contains(petArmor)) {
             cir.setReturnValue(true);
         }
     }

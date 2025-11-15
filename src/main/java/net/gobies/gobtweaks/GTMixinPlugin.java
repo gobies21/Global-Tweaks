@@ -20,7 +20,7 @@ public final class GTMixinPlugin implements IMixinConfigPlugin {
             "net.gobies.gobtweaks.mixin.iceandfire.EntityDragonBaseMixin", () -> LoadingModList.get().getModFileById("dynamictrees") != null,
             "net.gobies.gobtweaks.mixin.iceandfire.DragonUtilsMixin", () -> LoadingModList.get().getModFileById("dynamictrees") != null,
             "net.gobies.gobtweaks.mixin.iceandfire.FrozenDataMixin", () -> LoadingModList.get().getModFileById("cold_sweat") != null,
-            "net.gobies.gobtweaks.mixin.reforgingstation.QualityMixin", () -> LoadingModList.get().getModFileById("irons_spellbooks") != null,
+            "net.gobies.gobtweaks.mixin.reforgingstation.QualityMixin2", () -> LoadingModList.get().getModFileById("irons_spellbooks") != null,
             "net.gobies.gobtweaks.mixin.spartanfire.ItemMixin", () -> LoadingModList.get().getModFileById("spartanfire") != null,
             "net.gobies.gobtweaks.mixin.thirstwastaken.DrinkByHandClientMixin", () -> LoadingModList.get().getModFileById("alexscaves") != null
     );

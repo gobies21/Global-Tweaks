@@ -22,6 +22,7 @@
     "jlme.TradableEnchantmentsMixin",
     "notreepunching.HelpersMixin",
     "reforgingstation.QualityMixin",
+    "reforgingstation.QualityMixin2",
     "reforgingstation.QualityUtilMixin",
     "refurbishedfurniture.CrateBlockEntityMixin",
     "spartanfire.ItemMixin",

@@ -1,69 +1,26 @@
 package net.gobies.gobtweaks.mixin.reforgingstation;
 
 import com.dplayend.reforgingstation.common.quality.Quality;
-import com.dplayend.reforgingstation.registry.RegistryAttributes;
+import com.dplayend.reforgingstation.common.quality.QualityUtil;
+import com.dplayend.reforgingstation.handler.HandlerCurios;
 import net.gobies.gobtweaks.config.CommonConfig;
-import net.gobies.gobtweaks.handlers.AttributeHandler;
-import net.gobies.gobtweaks.util.ModLoadedUtil;
-import net.minecraft.ChatFormatting;
-import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Mixin(Quality.class)
 public class QualityMixin {
-
-    // Adds new qualities based off of irons spellbooks
-    @Inject(
-            method = "attributeOperation",
-            at = @At("HEAD"),
-            cancellable = true,
-            remap = false
-    )
-    private static void attributeOperation(Attribute attribute, CallbackInfoReturnable<AttributeModifier.Operation> cir) {
-        if (ModLoadedUtil.isIronsspellbooksLoaded()) {
-            if (attribute == AttributeHandler.MAX_MANA) {
-                cir.setReturnValue(AttributeModifier.Operation.ADDITION);
-            }
-        }
-    }
-
-    @Inject(
-            method = "attributeMap",
-            at = @At("TAIL"),
-            remap = false
-    )
-    private static void attributeMap(CallbackInfoReturnable<Map<Attribute, String>> cir) {
-        if (ModLoadedUtil.isIronsspellbooksLoaded()) {
-            Map<Attribute, String> map = cir.getReturnValue();
-            map.put(AttributeHandler.SPELL_POWER, "3176cb2e-5a6f-4f19-a2dc-f86982c98350");
-            map.put(AttributeHandler.MANA_REGEN, "3176cb2e-5a6f-4f19-a2dc-f86982c98351");
-            map.put(AttributeHandler.MAX_MANA, "3176cb2e-5a6f-4f19-a2dc-f86982c98352");
-        }
-    }
-
-    @Inject(
-            method = "accessoryQualityList",
-            at = @At("TAIL"),
-            remap = false
-    )
-    private static void addAccessoryQualities(CallbackInfoReturnable<List<Quality.QualityType>> cir) {
-        if (ModLoadedUtil.isIronsspellbooksLoaded()) {
-            if (CommonConfig.MAGE_QUALITIES.get()) {
-                List<Quality.QualityType> list = cir.getReturnValue();
-                list.add(new Quality.QualityType("inept", ChatFormatting.RED, new Quality.Modifier(AttributeHandler.MAX_MANA, -10.0F)));
-                list.add(new Quality.QualityType("adept", ChatFormatting.BLUE, new Quality.Modifier(AttributeHandler.MAX_MANA, 10.0F)));
-                list.add(new Quality.QualityType("mystic", ChatFormatting.AQUA, new Quality.Modifier(AttributeHandler.SPELL_POWER, 0.03F), new Quality.Modifier(RegistryAttributes.MAGIC_RESIST.get(), 1.0F)));
-                list.add(new Quality.QualityType("celestial", ChatFormatting.LIGHT_PURPLE, new Quality.Modifier(AttributeHandler.SPELL_POWER, 0.03F), new Quality.Modifier(AttributeHandler.MANA_REGEN, 0.03F), new Quality.Modifier(AttributeHandler.MAX_MANA, 10.0F)));
-            }
-        }
-    }
 
     @Inject(
             method = "matchingMaterial",
@@ -75,6 +32,56 @@ public class QualityMixin {
     private static void reforgeMaterial(ItemStack stack, ItemStack materialStack, CallbackInfoReturnable<Boolean> cir) {
         if (stack.getItem().isValidRepairItem(stack, materialStack) && CommonConfig.VALID_REPAIR_MATERIALS.get()) {
             cir.setReturnValue(true);
+        }
+    }
+
+    /**
+     * @author gobies
+     * @reason attempt to fix qualities ticking on all entities causing performance issues
+     */
+    @Overwrite(remap = false)
+    public static void addModifiers(LivingEntity livingEntity) {
+        ResourceLocation entityName = ForgeRegistries.ENTITY_TYPES.getKey(livingEntity.getType());
+        if (livingEntity instanceof Player || entityName != null && CommonConfig.ENTITY_QUALITIES.get().contains(entityName.toString())) {
+            List<Quality.SimpleModifier> map = new ArrayList<>();
+            map.add(new Quality.SimpleModifier(livingEntity.getMainHandItem(), QualityUtil.toolQuality(livingEntity.getMainHandItem())));
+            map.add(new Quality.SimpleModifier(livingEntity.getMainHandItem(), QualityUtil.bowQuality(livingEntity.getMainHandItem())));
+            map.add(new Quality.SimpleModifier(livingEntity.getMainHandItem(), QualityUtil.fishingRodQuality(livingEntity.getMainHandItem())));
+            map.add(new Quality.SimpleModifier(livingEntity.getOffhandItem(), QualityUtil.shieldQuality(livingEntity.getOffhandItem())));
+            livingEntity.getArmorSlots().forEach((stack) -> map.add(new Quality.SimpleModifier(stack, QualityUtil.armorQuality(stack))));
+            if (HandlerCurios.isModLoaded()) {
+                HandlerCurios.accessoryStackList(livingEntity).forEach((stack) -> map.add(new Quality.SimpleModifier(stack, HandlerCurios.accessoryQuality(livingEntity))));
+            }
+
+            Quality.attributeMap().forEach((attribute, uuid) -> {
+                AtomicReference<Double> value = new AtomicReference<>((double) 0.0F);
+                AtomicReference<AttributeModifier.Operation> operation = new AtomicReference<>(AttributeModifier.Operation.ADDITION);
+                map.forEach((simpleModifier) -> {
+                    ItemStack stack = simpleModifier.stack();
+                    boolean quality = simpleModifier.qualityType();
+                    Quality.QualityType type = QualityUtil.getQualityType(stack, livingEntity);
+                    if (type != null && !stack.isEmpty() && stack.getTag() != null && !stack.getTag().getString("quality").isEmpty() && quality) {
+                        for (Quality.Modifier provider : type.attributes()) {
+                            if (provider.attribute() != null && provider.attribute().equals(attribute)) {
+                                value.updateAndGet((aDouble) -> aDouble + provider.getAmount());
+                                operation.set(Quality.attributeOperation(provider.attribute()));
+                            }
+                        }
+                    }
+
+                });
+                UUID var10002 = UUID.fromString(uuid);
+                Objects.requireNonNull(attribute);
+                AttributeModifier attackModifier = new AttributeModifier(var10002, attribute::getDescriptionId, value.get(), operation.get());
+                AttributeInstance attributeInstance = livingEntity.getAttribute(attribute);
+                if (attributeInstance != null) {
+                    attributeInstance.removePermanentModifier(attackModifier.getId());
+                    if (!attributeInstance.hasModifier(attackModifier)) {
+                        attributeInstance.addPermanentModifier(attackModifier);
+                    }
+                }
+
+            });
         }
     }
 }

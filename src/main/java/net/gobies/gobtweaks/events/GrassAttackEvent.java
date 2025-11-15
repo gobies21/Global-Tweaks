@@ -14,9 +14,6 @@ import java.util.List;
 @Mod.EventBusSubscriber
 public class GrassAttackEvent {
 
-    public GrassAttackEvent() {
-    }
-
     @SubscribeEvent
     public static void onAttack(PlayerInteractEvent.LeftClickBlock event) {
         if (event.getLevel().getBlockState(event.getPos()).getCollisionShape(event.getLevel(), event.getPos()).isEmpty() && event.getEntity() != null) {

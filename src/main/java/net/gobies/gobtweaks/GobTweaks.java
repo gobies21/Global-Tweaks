@@ -2,8 +2,10 @@ package net.gobies.gobtweaks;
 
 import com.mojang.logging.LogUtils;
 import net.gobies.gobtweaks.config.CommonConfig;
+import net.gobies.gobtweaks.events.GTEvents;
 import net.gobies.gobtweaks.handlers.DragonDamageHandler;
 import net.gobies.gobtweaks.handlers.DynamicSticksHandler;
+import net.gobies.gobtweaks.handlers.ReforgingStationHandler;
 import net.gobies.gobtweaks.handlers.ThirstHandler;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraftforge.common.MinecraftForge;
@@ -58,5 +60,7 @@ public class GobTweaks {
         if (ModLoadedUtil.isIceandFireLoaded()) MinecraftForge.EVENT_BUS.register(DragonDamageHandler.class);
         if (ModLoadedUtil.isDynamicTreesLoaded()) MinecraftForge.EVENT_BUS.register(DynamicSticksHandler.class);
         if (ModLoadedUtil.isThirstLoaded()) MinecraftForge.EVENT_BUS.register(ThirstHandler.class);
+        if (ModLoadedUtil.isReforgingStationLoaded()) ReforgingStationHandler.loadClass();
+        MinecraftForge.EVENT_BUS.register(GTEvents.class);
     }
 }
