@@ -148,7 +148,7 @@ public abstract class QualityUtilMixin {
 
     /**
      * @author gobies
-     * @reason Removes repeated condition chains and string routing
+     * @reason Performance improvements
      */
     @Overwrite(remap = false)
     public static Quality.QualityType getQualityType(ItemStack stack, LivingEntity entity) {
