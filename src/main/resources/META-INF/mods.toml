@@ -5,7 +5,7 @@ license = "GNU General Public License"
 
 [[mods]]
 modId="gobtweaks"
-version="0.7.0"
+version="0.7.2"
 displayName="Global Tweaks"
 authors="gobies"
 description='''Various tweaks for many different mods and vanilla features'''

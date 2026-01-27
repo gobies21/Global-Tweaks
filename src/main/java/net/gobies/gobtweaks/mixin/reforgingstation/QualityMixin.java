@@ -84,4 +84,24 @@ public class QualityMixin {
             });
         }
     }
+
+    /**
+     * @author gobies
+     * @reason Make it more rare to get qualities
+     */
+    @Overwrite(remap = false)
+    public static Quality.QualityType getRandomQuality(List<Quality.QualityType> list) {
+        Quality.QualityType normalQuality = null;
+        for (Quality.QualityType qualityType : list) {
+            if (qualityType.attributes().length == 0) {
+                normalQuality = qualityType;
+                break;
+            }
+        }
+        if (normalQuality != null && Math.random() < CommonConfig.NO_QUALITY_CHANCE.get()) {
+            return normalQuality;
+        } else {
+            return list.get((int) Math.floor(Math.random() * list.size()));
+        }
+    }
 }

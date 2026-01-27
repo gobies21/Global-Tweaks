@@ -58,6 +58,8 @@ public class CommonConfig {
     public static List<? extends String> entity_qualities;
     public static ForgeConfigSpec.ConfigValue<Boolean> VALID_REPAIR_MATERIALS;
     public static boolean valid_repair_materials;
+    public static ForgeConfigSpec.ConfigValue<Double> NO_QUALITY_CHANCE;
+    public static float no_quality_chance;
     public static ForgeConfigSpec.ConfigValue<Double> DUNGEON_VANISH_CHANCE;
     public static float dungeon_vanish_chance;
     public static ForgeConfigSpec.ConfigValue<BranchEnum> BREAK_BRANCH_TYPE;
@@ -74,6 +76,8 @@ public class CommonConfig {
     public static boolean disable_oil_tooltip;
     public static ForgeConfigSpec.ConfigValue<Boolean> THIRST_ATTACK_EXHAUSTION;
     public static boolean thirst_attack_exhaustion;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> BLACKLIST_CREATIVE_TAB;
+    public static List<? extends String> blacklist_creative_tab;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> DEBUG;
     public static boolean debug;
@@ -106,6 +110,7 @@ public class CommonConfig {
             blacklist_bow_qualities = BLACKLIST_BOW_QUALITIES.get();
             entity_qualities = ENTITY_QUALITIES.get();
             valid_repair_materials = VALID_REPAIR_MATERIALS.get();
+            no_quality_chance = NO_QUALITY_CHANCE.get().floatValue();
             dungeon_vanish_chance = DUNGEON_VANISH_CHANCE.get().floatValue();
             break_branch_type = BREAK_BRANCH_TYPE.get();
             dragon_fire_immune = DRAGON_FIRE_IMMUNE.get();
@@ -114,12 +119,14 @@ public class CommonConfig {
             additional_stick_chance = ADDITIONAL_STICK_CHANCE.get().floatValue();
             disable_oil_tooltip = DISABLE_OIL_TOOLTIP.get();
             thirst_attack_exhaustion = THIRST_ATTACK_EXHAUSTION.get();
+            blacklist_creative_tab = BLACKLIST_CREATIVE_TAB.get();
             debug = DEBUG.get();
         }
     }
 
     static {
         BUILDER.push("General");
+        BLACKLIST_CREATIVE_TAB = BUILDER.comment("List items to blacklist from the creative tab").defineList("Creative_Blacklist", List.of(), o -> true);
         DEBUG = BUILDER.comment("Enable debug mode (experimental features)").define("Debug", false);
         BUILDER.pop();
 
@@ -145,6 +152,7 @@ public class CommonConfig {
         BUILDER.pop();
 
         BUILDER.push("Reforging_Station");
+        NO_QUALITY_CHANCE = BUILDER.comment("Chance that items do not receive a quality, higher values makes qualities rarer").defineInRange("Normal_Chance", 0.5, 0.0, 1.0);
         MAGE_QUALITIES = BUILDER.comment("Adds new qualities for irons spellbooks").define("Irons_Spellbooks_Mage_Qualities", true);
         ADD_TOOL_QUALITIES = BUILDER.comment("List of tools/weapons to be able to receive qualities").defineList("Tool_Qualities", List.of("cataclysm:the_incinerator", "cataclysm:gauntlet_of_guard", "cataclysm:gauntlet_of_bulwark", "cataclysm:gauntlet_of_maelstrom", "cataclysm:soul_render", "cataclysm:the_annihilator", "cataclysm:the_immolator", "cataclysm:tidal_claws", "cataclysm:coral_spear", "cataclysm:coral_bardiche", "cataclysm:meat_shredder", "cataclysm:astrape", "cataclysm:ceraunus", "cataclysm:ancient_spear"), o -> true);
         ADD_SHIELD_QUALITIES = BUILDER.comment("List of shields to be able to receive qualities").defineList("Shield_Qualities", List.of("cataclysm:bulwark_of_the_flame"), o -> true);

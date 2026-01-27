@@ -128,7 +128,6 @@ dependencies {
     implementation fg.deobf("curse.maven:spartan-weaponry-addon-toolkit-1051658:6863433")
 
     implementation fg.deobf("curse.maven:ice-and-fire-spartan-weaponry-extras-1191816:6150005")
-    implementation fg.deobf("curse.maven:dungeons-mobs-port-1214518:6785377")
     implementation fg.deobf("curse.maven:more-artifacts-1143299:6694337")
 
     runtimeOnly(fg.deobf("curse.maven:configured-457570:5180900"))
