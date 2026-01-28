@@ -36,6 +36,7 @@ public class GobTweaks {
         registerHandlers();
 
     }
+
     public void commonSetup(final FMLCommonSetupEvent event) {
         LOGGER.info("Vanilla Mixins loaded to prevent items from being destroyed by lightning");
         LOGGER.info("Swing through grass has been loaded to allow hitting entities through grass without destroying the grass");

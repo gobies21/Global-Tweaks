@@ -91,17 +91,26 @@ public class QualityMixin {
      */
     @Overwrite(remap = false)
     public static Quality.QualityType getRandomQuality(List<Quality.QualityType> list) {
-        Quality.QualityType normalQuality = null;
-        for (Quality.QualityType qualityType : list) {
-            if (qualityType.attributes().length == 0) {
-                normalQuality = qualityType;
-                break;
+        Quality.QualityType normal = null;
+        int qualityCount = 0;
+
+        for (Quality.QualityType quality : list) {
+            if (quality.attributes().length == 0) {
+                normal = quality;
+            } else {
+                qualityCount++;
             }
         }
-        if (normalQuality != null && Math.random() < CommonConfig.NO_QUALITY_CHANCE.get()) {
-            return normalQuality;
-        } else {
-            return list.get((int) Math.floor(Math.random() * list.size()));
+        if (normal == null || qualityCount == 0) return list.get((int) (Math.random() * list.size()));
+        if (Math.random() < CommonConfig.NO_QUALITY_CHANCE.get()) return normal;
+
+        int pick = (int) (Math.random() * qualityCount);
+        for (Quality.QualityType quality : list) {
+            if (quality.attributes().length != 0 && pick-- == 0) {
+                return quality;
+            }
         }
+        // fallback (should not occur)
+        return normal;
     }
 }
