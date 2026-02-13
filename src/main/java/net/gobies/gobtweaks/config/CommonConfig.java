@@ -54,6 +54,8 @@ public class CommonConfig {
     public static List<? extends String> blacklist_shield_qualities;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> BLACKLIST_BOW_QUALITIES;
     public static List<? extends String> blacklist_bow_qualities;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> BLACKLIST_CURIO_QUALITIES;
+    public static List<? extends String> blacklist_curio_qualities;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> ENTITY_QUALITIES;
     public static List<? extends String> entity_qualities;
     public static ForgeConfigSpec.ConfigValue<Boolean> VALID_REPAIR_MATERIALS;
@@ -108,6 +110,7 @@ public class CommonConfig {
             blacklist_tool_qualities = BLACKLIST_TOOL_QUALITIES.get();
             blacklist_shield_qualities = BLACKLIST_SHIELD_QUALITIES.get();
             blacklist_bow_qualities = BLACKLIST_BOW_QUALITIES.get();
+            blacklist_curio_qualities = BLACKLIST_CURIO_QUALITIES.get();
             entity_qualities = ENTITY_QUALITIES.get();
             valid_repair_materials = VALID_REPAIR_MATERIALS.get();
             no_quality_chance = NO_QUALITY_CHANCE.get().floatValue();
@@ -159,6 +162,7 @@ public class CommonConfig {
         ADD_BOW_QUALITIES = BUILDER.comment("List of bows to be able to receive qualities").defineList("Bow_Qualities", List.of(), o -> true);
         BLACKLIST_TOOL_QUALITIES = BUILDER.comment("List of tools/weapons to be unable to receive qualities").defineList("Blacklisted_Tool_Qualities", List.of(), o -> true);
         BLACKLIST_BOW_QUALITIES = BUILDER.comment("List of bows to be unable to receive qualities").defineList("Blacklisted_Bow_Qualities", List.of(), o -> true);
+        BLACKLIST_CURIO_QUALITIES = BUILDER.comment("List of curio items to be unable to receive qualities").defineList("Blacklisted_Curio_Qualities", List.of(), o -> true);
         BLACKLIST_SHIELD_QUALITIES = BUILDER.comment("List of shields to be unable to receive qualities").defineList("Blacklisted_Shield_Qualities", List.of(), o -> true);
         ENTITY_QUALITIES = BUILDER.comment("List of entities to be able to receive qualities").defineList("Entity_Qualities", List.of("minecraft:horse"), o -> true);
         VALID_REPAIR_MATERIALS = BUILDER.comment("Allows all reforge-able gear to pull from their repair materials for reforging").define("Valid_Repair_Materials", true);

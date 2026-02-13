@@ -5,9 +5,12 @@
   "refmap": "gobtweaks.mixins.refmap.json",
   "plugin": "net.gobies.gobtweaks.GTMixinPlugin",
   "mixins": [
+    "accessor.ItemAccessor",
     "blessfulled.DamagePopupTriggersMixin",
     "blessfulled.SpecialSoundsTriggersMixin",
     "carryon.PickupHandlerMixin",
+    "combatnouveau.AttributesTooltipHandlerMixin",
+    "combatnouveau.CombatTestHandlerMixin",
     "dungeoncrawl.RandomEquipmentMixin",
     "fbt.BattleTowerGolemEntityMixin",
     "iceandfire.DragonSteelTierMixin",
@@ -19,6 +22,7 @@
     "jlme.RuneEnchantmentsMixin",
     "jlme.SupremeSharpnessEnchantmentMixin",
     "jlme.TradableEnchantmentsMixin",
+    "locks.LocksItemsMixin",
     "notreepunching.HelpersMixin",
     "reforgingstation.ChangeQualitySPMixin",
     "reforgingstation.HandlerCuriosMixin",
@@ -34,6 +38,7 @@
     "vanilla.EnchantmentMixin",
     "vanilla.EntityMixin",
     "vanilla.ItemEntityMixin",
+    "vanilla.ItemStackMixin",
     "vanilla.MobEffectMixin",
     "vanilla.ServerAdvancementManagerMixin"
   ],

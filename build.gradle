@@ -102,6 +102,9 @@ dependencies {
     implementation fg.deobf("curse.maven:enhancedvisuals-255389:6192498")
     implementation fg.deobf("curse.maven:creativecore-257814:6383884")
     implementation fg.deobf("curse.maven:mutant-monsters-852665:5107399")
+
+    implementation fg.deobf("curse.maven:combat-nouveau-969425:5137621")
+
     implementation fg.deobf("curse.maven:puzzles-lib-495476:6387081")
     implementation fg.deobf("curse.maven:reforging-station-1202199:6208571")
     implementation fg.deobf("curse.maven:irons-spells-n-spellbooks-855414:6488484")
@@ -123,9 +126,12 @@ dependencies {
     implementation fg.deobf("curse.maven:dynamictrees-252818:6655713")
     implementation fg.deobf("curse.maven:forgotten-battle-towers-1151901:6554491")
     implementation fg.deobf("curse.maven:cold-sweat-506194:6503192")
+    implementation fg.deobf("curse.maven:tool-belt-260262:5929061")
 
     implementation fg.deobf("curse.maven:spartan-weaponry-ice-and-fire-606315:5608442")
     implementation fg.deobf("curse.maven:spartan-weaponry-addon-toolkit-1051658:6863433")
+
+    implementation fg.deobf("curse.maven:hardcore-torches-forge-576846:7288488")
 
     implementation fg.deobf("curse.maven:ice-and-fire-spartan-weaponry-extras-1191816:6150005")
     implementation fg.deobf("curse.maven:more-artifacts-1143299:6694337")
@@ -137,6 +143,8 @@ dependencies {
     compileOnly(fg.deobf("curse.maven:itemphysic-258587:6450992"))
     implementation fg.deobf("curse.maven:no-tree-punching-289043:4599926")
     runtimeOnly(fg.deobf("curse.maven:just-enough-effect-descriptions-jeed-532286:6172935"))
+
+    //implementation fg.deobf("curse.maven:demis-better-stealth-1343821:6989663")
 }
 
 mixin {

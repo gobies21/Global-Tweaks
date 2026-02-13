@@ -138,8 +138,7 @@ public abstract class QualityUtilMixin {
         if (QualityUtil.fishingRodQuality(stack)) return QualityHelper.Category.ROD;
         if (QualityUtil.toolQuality(stack)) return QualityHelper.Category.TOOL;
 
-        if (HandlerCurios.accessoryQuality(stack)
-                && (entity == null || entity instanceof ServerPlayer)) {
+        if (HandlerCurios.accessoryQuality(stack) && (entity == null || entity instanceof ServerPlayer)) {
             return QualityHelper.Category.ACCESSORY;
         }
 
