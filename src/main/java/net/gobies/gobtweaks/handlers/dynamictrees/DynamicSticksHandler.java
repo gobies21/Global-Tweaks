@@ -1,4 +1,4 @@
-package net.gobies.gobtweaks.handlers;
+package net.gobies.gobtweaks.handlers.dynamictrees;
 
 import com.ferreusveritas.dynamictrees.data.DTBlockTags;
 import net.gobies.gobtweaks.config.CommonConfig;

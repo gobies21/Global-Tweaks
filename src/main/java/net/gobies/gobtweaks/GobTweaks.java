@@ -3,10 +3,12 @@ package net.gobies.gobtweaks;
 import com.mojang.logging.LogUtils;
 import net.gobies.gobtweaks.config.CommonConfig;
 import net.gobies.gobtweaks.events.GTEvents;
-import net.gobies.gobtweaks.handlers.DragonDamageHandler;
-import net.gobies.gobtweaks.handlers.DynamicSticksHandler;
-import net.gobies.gobtweaks.handlers.ReforgingStationHandler;
-import net.gobies.gobtweaks.handlers.ThirstHandler;
+import net.gobies.gobtweaks.handlers.dynamictrees.DynamicSticksHandler;
+import net.gobies.gobtweaks.handlers.iceandfire.DragonDamageHandler;
+import net.gobies.gobtweaks.handlers.locks.WorldGenLockHandler;
+import net.gobies.gobtweaks.handlers.reforgingstation.ReforgingStationHandler;
+import net.gobies.gobtweaks.handlers.firstaid.EHDamageHandler;
+import net.gobies.gobtweaks.handlers.thirst.ThirstHandler;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -61,7 +63,9 @@ public class GobTweaks {
         if (ModLoadedUtil.isIceandFireLoaded()) MinecraftForge.EVENT_BUS.register(DragonDamageHandler.class);
         if (ModLoadedUtil.isDynamicTreesLoaded()) MinecraftForge.EVENT_BUS.register(DynamicSticksHandler.class);
         if (ModLoadedUtil.isThirstLoaded()) MinecraftForge.EVENT_BUS.register(ThirstHandler.class);
+        if (ModLoadedUtil.isLocksLoaded()) MinecraftForge.EVENT_BUS.register(WorldGenLockHandler.class);
         if (ModLoadedUtil.isReforgingStationLoaded()) ReforgingStationHandler.loadClass();
         MinecraftForge.EVENT_BUS.register(GTEvents.class);
+        if (ModLoadedUtil.isFirstAidLoaded()) MinecraftForge.EVENT_BUS.register(EHDamageHandler.class);
     }
 }

@@ -37,7 +37,7 @@ public class LocksItemsMixin {
             constant = @Constant(intValue = 6)
     )
     private static int goldLockRebalance(int constant) {
-        return 5;
+        return 4;
     }
 
     @ModifyConstant(

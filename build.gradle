@@ -99,8 +99,8 @@ dependencies {
     implementation fg.deobf("curse.maven:progressive-tweaks-1163889:6645509")
     implementation fg.deobf("curse.maven:progressive-mechanics-library-1235043:6454177")
     implementation fg.deobf("curse.maven:blessfulled-1182590:6624691")
-    implementation fg.deobf("curse.maven:enhancedvisuals-255389:6192498")
-    implementation fg.deobf("curse.maven:creativecore-257814:6383884")
+    implementation fg.deobf("curse.maven:enhancedvisuals-255389:8042920")
+    implementation fg.deobf("curse.maven:creativecore-257814:8004858")
     implementation fg.deobf("curse.maven:mutant-monsters-852665:5107399")
 
     implementation fg.deobf("curse.maven:combat-nouveau-969425:5137621")

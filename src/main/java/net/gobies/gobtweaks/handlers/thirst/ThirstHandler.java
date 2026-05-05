@@ -1,4 +1,4 @@
-package net.gobies.gobtweaks.handlers;
+package net.gobies.gobtweaks.handlers.thirst;
 
 import dev.ghen.thirst.foundation.common.capability.ModCapabilities;
 import io.redspace.ironsspellbooks.api.events.SpellOnCastEvent;

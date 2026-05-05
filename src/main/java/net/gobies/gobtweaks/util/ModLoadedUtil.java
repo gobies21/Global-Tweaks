@@ -91,4 +91,8 @@ public class ModLoadedUtil {
     public static boolean isSpartanFireLoaded() {
         return ModList.get().isLoaded("spartanfire");
     }
+
+    public static boolean isFirstAidLoaded() {
+        return ModList.get().isLoaded("firstaid");
+    }
 }

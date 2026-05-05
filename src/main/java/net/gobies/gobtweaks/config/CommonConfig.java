@@ -2,12 +2,15 @@ package net.gobies.gobtweaks.config;
 
 import net.gobies.gobtweaks.GobTweaks;
 import net.gobies.gobtweaks.util.BranchEnum;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Mod.EventBusSubscriber(modid = GobTweaks.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CommonConfig {
@@ -80,6 +83,8 @@ public class CommonConfig {
     public static boolean thirst_attack_exhaustion;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> BLACKLIST_CREATIVE_TAB;
     public static List<? extends String> blacklist_creative_tab;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> ALWAYS_LOCK;
+    public static Map<ResourceLocation, ResourceLocation> always_lock = new ConcurrentHashMap<>();
 
     public static ForgeConfigSpec.ConfigValue<Boolean> DEBUG;
     public static boolean debug;
@@ -123,6 +128,19 @@ public class CommonConfig {
             disable_oil_tooltip = DISABLE_OIL_TOOLTIP.get();
             thirst_attack_exhaustion = THIRST_ATTACK_EXHAUSTION.get();
             blacklist_creative_tab = BLACKLIST_CREATIVE_TAB.get();
+            always_lock.clear();
+            for (String entry : ALWAYS_LOCK.get()) {
+                String[] parts = entry.split(",");
+                if (parts.length == 2) {
+                    try {
+                        ResourceLocation lootTable = new ResourceLocation(parts[0].trim());
+                        ResourceLocation lockItem = new ResourceLocation(parts[1].trim());
+                        always_lock.put(lootTable, lockItem);
+                    } catch (Exception e) {
+                        GobTweaks.LOGGER.debug("Error Parsing");
+                    }
+                }
+            }
             debug = DEBUG.get();
         }
     }
@@ -141,6 +159,10 @@ public class CommonConfig {
         DISABLE_ADVANCEMENTS = BUILDER.comment("Disables all advancements from the game").define("Disable_Advancements", false);
         ALWAYS_PICKUP = BUILDER.comment("Allows mobs to always pickup dropped items").define("Always_Pickup", false);
         FRIENDLY_FIRE = BUILDER.comment("Disables being able to attack your own tames").define("Friendly_Fire", true);
+        BUILDER.pop();
+
+        BUILDER.push("Locks");
+        ALWAYS_LOCK = BUILDER.comment("Loot tables to always have locks generated, (e.g., 'loot_table_id,locks:item_id' or 'loot_table_id,random') with 'random' being a randomly selected lock").defineList("Always_Lock", List.of(), o -> o instanceof String && ((String) o).contains(","));
         BUILDER.pop();
 
         BUILDER.push("Refurbished_Furniture");

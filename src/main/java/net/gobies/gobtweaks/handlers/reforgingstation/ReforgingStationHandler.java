@@ -1,4 +1,4 @@
-package net.gobies.gobtweaks.handlers;
+package net.gobies.gobtweaks.handlers.reforgingstation;
 
 import com.dplayend.reforgingstation.registry.RegistryAttributes;
 import net.minecraft.world.entity.player.Player;

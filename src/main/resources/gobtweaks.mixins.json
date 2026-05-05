@@ -6,6 +6,7 @@
   "plugin": "net.gobies.gobtweaks.GTMixinPlugin",
   "mixins": [
     "accessor.ItemAccessor",
+    "accessor.RandomizableContainerBlockEntityAccessor",
     "blessfulled.DamagePopupTriggersMixin",
     "blessfulled.SpecialSoundsTriggersMixin",
     "carryon.PickupHandlerMixin",

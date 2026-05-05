@@ -1,4 +1,4 @@
-package net.gobies.gobtweaks.handlers;
+package net.gobies.gobtweaks.handlers.iceandfire;
 
 import com.github.alexthe666.iceandfire.misc.IafDamageRegistry;
 import net.gobies.gobtweaks.config.CommonConfig;
