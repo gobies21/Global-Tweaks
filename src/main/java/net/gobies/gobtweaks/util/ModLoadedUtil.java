@@ -95,4 +95,7 @@ public class ModLoadedUtil {
     public static boolean isFirstAidLoaded() {
         return ModList.get().isLoaded("firstaid");
     }
+    public static boolean isEnhancedVisualsLoaded() {
+        return ModList.get().isLoaded("enhancedvisuals");
+    }
 }

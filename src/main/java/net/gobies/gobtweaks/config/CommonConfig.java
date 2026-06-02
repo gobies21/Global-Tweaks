@@ -85,6 +85,8 @@ public class CommonConfig {
     public static List<? extends String> blacklist_creative_tab;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> ALWAYS_LOCK;
     public static Map<ResourceLocation, ResourceLocation> always_lock = new ConcurrentHashMap<>();
+    public static ForgeConfigSpec.ConfigValue<String> CARRY_ON_EFFECT;
+    public static String carry_on_effect;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> DEBUG;
     public static boolean debug;
@@ -141,6 +143,7 @@ public class CommonConfig {
                     }
                 }
             }
+            carry_on_effect = CARRY_ON_EFFECT.get();
             debug = DEBUG.get();
         }
     }
@@ -211,6 +214,10 @@ public class CommonConfig {
 
         BUILDER.push("Thirst_was_Taken");
         THIRST_ATTACK_EXHAUSTION = BUILDER.comment("Makes attacking entities slightly exhaust thirst").define("Thirst_Attack_Exhaustion", true);
+        BUILDER.pop();
+
+        BUILDER.push("Carry_On");
+        CARRY_ON_EFFECT = BUILDER.comment("Effect used for carry on penality").define("Effect", "minecraft:slowness");
         BUILDER.pop();
 
         SPEC = BUILDER.build();

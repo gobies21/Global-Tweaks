@@ -36,7 +36,6 @@ public class GobTweaks {
         modBus.addListener(this::clientSetup);
 
         registerHandlers();
-
     }
 
     public void commonSetup(final FMLCommonSetupEvent event) {
@@ -60,12 +59,12 @@ public class GobTweaks {
     }
 
     public static void registerHandlers() {
+        MinecraftForge.EVENT_BUS.register(GTEvents.class);
         if (ModLoadedUtil.isIceandFireLoaded()) MinecraftForge.EVENT_BUS.register(DragonDamageHandler.class);
         if (ModLoadedUtil.isDynamicTreesLoaded()) MinecraftForge.EVENT_BUS.register(DynamicSticksHandler.class);
         if (ModLoadedUtil.isThirstLoaded()) MinecraftForge.EVENT_BUS.register(ThirstHandler.class);
         if (ModLoadedUtil.isLocksLoaded()) MinecraftForge.EVENT_BUS.register(WorldGenLockHandler.class);
         if (ModLoadedUtil.isReforgingStationLoaded()) ReforgingStationHandler.loadClass();
-        MinecraftForge.EVENT_BUS.register(GTEvents.class);
-        if (ModLoadedUtil.isFirstAidLoaded()) MinecraftForge.EVENT_BUS.register(EHDamageHandler.class);
+        if (ModLoadedUtil.isFirstAidLoaded() && ModLoadedUtil.isEnhancedVisualsLoaded()) MinecraftForge.EVENT_BUS.register(EHDamageHandler.class);
     }
 }

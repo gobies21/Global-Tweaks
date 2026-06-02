@@ -9,6 +9,7 @@
     "accessor.RandomizableContainerBlockEntityAccessor",
     "blessfulled.DamagePopupTriggersMixin",
     "blessfulled.SpecialSoundsTriggersMixin",
+    "carryon.CarryOnCommonMixin",
     "carryon.PickupHandlerMixin",
     "combatnouveau.AttributesTooltipHandlerMixin",
     "combatnouveau.CombatTestHandlerMixin",

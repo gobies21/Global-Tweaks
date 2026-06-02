@@ -7,12 +7,15 @@ import net.gobies.gobtweaks.config.CommonConfig;
 import net.gobies.gobtweaks.util.GTUtils;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.gobies.gobtweaks.util.QualityHelper;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -20,6 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Mixin(QualityUtil.class)
@@ -128,6 +132,8 @@ public abstract class QualityUtilMixin {
 
     @Unique
     private static QualityHelper.Category gobTweaks$resolve(ItemStack stack, @Nullable LivingEntity entity) {
+        if (stack == null || stack.isEmpty()) return QualityHelper.Category.NONE;
+        if (QualityUtil.toolQuality(stack)) return QualityHelper.Category.TOOL;
         if (QualityUtil.helmetQuality(stack)) return QualityHelper.Category.HELMET;
         if (QualityUtil.chestPlateQuality(stack)) return QualityHelper.Category.CHESTPLATE;
         if (QualityUtil.leggingsQuality(stack)) return QualityHelper.Category.LEGGINGS;
@@ -136,7 +142,6 @@ public abstract class QualityUtilMixin {
         if (QualityUtil.shieldQuality(stack)) return QualityHelper.Category.SHIELD;
         if (QualityUtil.bowQuality(stack)) return QualityHelper.Category.BOW;
         if (QualityUtil.fishingRodQuality(stack)) return QualityHelper.Category.ROD;
-        if (QualityUtil.toolQuality(stack)) return QualityHelper.Category.TOOL;
 
         if (HandlerCurios.accessoryQuality(stack) && (entity == null || entity instanceof ServerPlayer)) {
             return QualityHelper.Category.ACCESSORY;
@@ -153,6 +158,7 @@ public abstract class QualityUtilMixin {
     public static Quality.QualityType getQualityType(ItemStack stack, LivingEntity entity) {
         QualityHelper.Category category = gobTweaks$resolve(stack, entity);
         return switch (category) {
+            case TOOL -> Quality.getQualityType(stack, Quality.toolQualityList());
             case HELMET -> Quality.getQualityType(stack, Quality.helmetQualityList());
             case CHESTPLATE -> Quality.getQualityType(stack, Quality.chestplateQualityList());
             case LEGGINGS -> Quality.getQualityType(stack, Quality.leggingsQualityList());
@@ -161,7 +167,6 @@ public abstract class QualityUtilMixin {
             case SHIELD -> Quality.getQualityType(stack, Quality.shieldQualityList());
             case BOW -> Quality.getQualityType(stack, Quality.bowQualityList());
             case ROD -> Quality.getQualityType(stack, Quality.rodQualityList());
-            case TOOL -> Quality.getQualityType(stack, Quality.toolQualityList());
             case ACCESSORY -> Quality.getQualityType(stack, Quality.accessoryQualityList());
             default -> null;
         };
@@ -175,6 +180,7 @@ public abstract class QualityUtilMixin {
     public static String getQuality(ItemStack stack) {
         QualityHelper.Category category = gobTweaks$resolve(stack, null);
         return switch (category) {
+            case TOOL -> "tool";
             case HELMET -> "helmet";
             case CHESTPLATE -> "chestplate";
             case LEGGINGS -> "leggings";
@@ -183,7 +189,6 @@ public abstract class QualityUtilMixin {
             case SHIELD -> "shield";
             case BOW -> "bow";
             case ROD -> "rod";
-            case TOOL -> "tool";
             case ACCESSORY -> "accessory";
             default -> "";
         };
@@ -196,31 +201,50 @@ public abstract class QualityUtilMixin {
     @Overwrite(remap = false)
     public static void createQuality(ItemStack stack) {
         QualityHelper.Category category = gobTweaks$resolve(stack, null);
-
         switch (category) {
-            case HELMET ->
-                    Quality.createQualities(stack, Quality.getRandomQuality(Quality.helmetQualityList()).quality());
-            case CHESTPLATE ->
-                    Quality.createQualities(stack, Quality.getRandomQuality(Quality.chestplateQualityList()).quality());
-            case LEGGINGS ->
-                    Quality.createQualities(stack, Quality.getRandomQuality(Quality.leggingsQualityList()).quality());
-            case BOOTS ->
-                    Quality.createQualities(stack, Quality.getRandomQuality(Quality.bootsQualityList()).quality());
-            case SHIELD ->
-                    Quality.createQualities(stack, Quality.getRandomQuality(Quality.shieldQualityList()).quality());
-            case PET ->
-                    Quality.createQualities(stack, Quality.getRandomQuality(Quality.petQualityList()).quality());
-            case BOW ->
-                    Quality.createQualities(stack, Quality.getRandomQuality(Quality.bowQualityList()).quality());
-            case ROD ->
-                    Quality.createQualities(stack, Quality.getRandomQuality(Quality.rodQualityList()).quality());
-            case TOOL ->
-                    Quality.createQualities(stack, Quality.getRandomQuality(Quality.toolQualityList()).quality());
-            case ACCESSORY ->
-                    HandlerCurios.createAccessoryQuality(stack);
+            case TOOL -> Quality.createQualities(stack, Quality.getRandomQuality(Quality.toolQualityList()).quality());
+            case HELMET -> Quality.createQualities(stack, Quality.getRandomQuality(Quality.helmetQualityList()).quality());
+            case CHESTPLATE -> Quality.createQualities(stack, Quality.getRandomQuality(Quality.chestplateQualityList()).quality());
+            case LEGGINGS -> Quality.createQualities(stack, Quality.getRandomQuality(Quality.leggingsQualityList()).quality());
+            case BOOTS -> Quality.createQualities(stack, Quality.getRandomQuality(Quality.bootsQualityList()).quality());
+            case SHIELD -> Quality.createQualities(stack, Quality.getRandomQuality(Quality.shieldQualityList()).quality());
+            case PET -> Quality.createQualities(stack, Quality.getRandomQuality(Quality.petQualityList()).quality());
+            case BOW -> Quality.createQualities(stack, Quality.getRandomQuality(Quality.bowQualityList()).quality());
+            case ROD -> Quality.createQualities(stack, Quality.getRandomQuality(Quality.rodQualityList()).quality());
+            case ACCESSORY -> HandlerCurios.createAccessoryQuality(stack);
             default -> {
                 // do nothing
             }
+        }
+    }
+
+    @Shadow(remap = false)
+    private static void qualityTooltip(List<Component> list, ItemStack stack, Quality.QualityType qualityType, MutableComponent component, boolean itemFormat) {}
+
+        /**
+         * @author gobies
+         * @reason remove duplicate modifier tooltips
+         * */
+    @Overwrite(remap = false)
+    public static void createTooltip(ItemStack stack, List<Component> list, boolean includeNormalQuality) {
+        if (stack.hasTag() && stack.getTag() != null && !stack.getTag().getString("quality").isEmpty()) {
+            String removed = "XXXX-XXXX-XXX3";
+            MutableComponent emptyComponent = Component.literal(removed);
+
+            switch (getQuality(stack)) {
+                case "helmet" -> qualityTooltip(list, stack, Quality.getQualityType(stack, Quality.helmetQualityList()), emptyComponent, includeNormalQuality);
+                case "chestplate" -> qualityTooltip(list, stack, Quality.getQualityType(stack, Quality.chestplateQualityList()), emptyComponent, includeNormalQuality);
+                case "leggings" -> qualityTooltip(list, stack, Quality.getQualityType(stack, Quality.leggingsQualityList()), emptyComponent, includeNormalQuality);
+                case "boots" -> qualityTooltip(list, stack, Quality.getQualityType(stack, Quality.bootsQualityList()), emptyComponent, includeNormalQuality);
+                case "shield" -> qualityTooltip(list, stack, Quality.getQualityType(stack, Quality.shieldQualityList()), emptyComponent, includeNormalQuality);
+                case "pet" -> qualityTooltip(list, stack, Quality.getQualityType(stack, Quality.petQualityList()), emptyComponent, includeNormalQuality);
+                case "bow" -> qualityTooltip(list, stack, Quality.getQualityType(stack, Quality.bowQualityList()), emptyComponent, includeNormalQuality);
+                case "rod" -> qualityTooltip(list, stack, Quality.getQualityType(stack, Quality.rodQualityList()), emptyComponent, includeNormalQuality);
+                case "tool" -> qualityTooltip(list, stack, Quality.getQualityType(stack, Quality.toolQualityList()), emptyComponent, includeNormalQuality);
+                case "accessory" -> qualityTooltip(list, stack, Quality.getQualityType(stack, Quality.accessoryQualityList()), emptyComponent, includeNormalQuality);
+
+            }
+            list.removeIf(component -> component.getString().contains(removed));
         }
     }
 }

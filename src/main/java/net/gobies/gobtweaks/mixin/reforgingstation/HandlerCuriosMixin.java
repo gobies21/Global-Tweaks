@@ -24,7 +24,7 @@ public class HandlerCuriosMixin {
     @Unique
     private static final Set<Item> BLACKLIST_CURIO_ITEMS = GTUtils.createItemSet(CommonConfig.BLACKLIST_CURIO_QUALITIES.get());
 
-    @Shadow
+    @Shadow(remap = false)
     public static boolean isModLoaded() {
         return ModList.get().isLoaded("curios");
     }
