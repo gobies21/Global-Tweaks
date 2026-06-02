@@ -56,7 +56,7 @@ public abstract class ItemStackMixin {
             }
 
             for (Map.Entry<Attribute, AttributeModifier> entry : original.entries()) {
-                if (entry.getKey() != Attributes.ATTACK_DAMAGE && entry.getKey() != Attributes.ATTACK_SPEED&& entry.getKey() != ForgeMod.ENTITY_REACH.get()) {
+                if (entry.getKey() != Attributes.ATTACK_DAMAGE && entry.getKey() != Attributes.ATTACK_SPEED && entry.getKey() != ForgeMod.ENTITY_REACH.get()) {
                     sorted.put(entry.getKey(), entry.getValue());
                 }
             }

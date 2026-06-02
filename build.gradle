@@ -125,7 +125,7 @@ dependencies {
     implementation fg.deobf("curse.maven:apothecary-potion-expansion-1278100:6637581")
     implementation fg.deobf("curse.maven:dynamictrees-252818:6655713")
     implementation fg.deobf("curse.maven:forgotten-battle-towers-1151901:6554491")
-    implementation fg.deobf("curse.maven:cold-sweat-506194:6503192")
+    implementation fg.deobf("curse.maven:cold-sweat-506194:8170903")
     implementation fg.deobf("curse.maven:tool-belt-260262:5929061")
 
     implementation fg.deobf("curse.maven:spartan-weaponry-ice-and-fire-606315:5608442")

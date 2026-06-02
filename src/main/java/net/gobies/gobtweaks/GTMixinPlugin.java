@@ -13,18 +13,18 @@ import java.util.function.Supplier;
 
 public final class GTMixinPlugin implements IMixinConfigPlugin {
     private static final Supplier<Boolean> TRUE = () -> true;
-    private static final Map<String, Supplier<Boolean>> CONDITIONS = ImmutableMap.of(
-            "net.gobies.gobtweaks.mixin.blessfulled.DamagePopupTriggersMixin", () -> LoadingModList.get().getModFileById("pml") != null,
-            "net.gobies.gobtweaks.mixin.carryon.PickupHandlerMixin", () -> LoadingModList.get().getModFileById("locks") != null,
-            "net.gobies.gobtweaks.mixin.fbt.BattleTowerGolemEntityMixin", () -> LoadingModList.get().getModFileById("locks") != null,
-            "net.gobies.gobtweaks.mixin.iceandfire.EntityDragonBaseMixin", () -> LoadingModList.get().getModFileById("dynamictrees") != null,
-            "net.gobies.gobtweaks.mixin.iceandfire.DragonUtilsMixin", () -> LoadingModList.get().getModFileById("dynamictrees") != null,
-            "net.gobies.gobtweaks.mixin.iceandfire.FrozenDataMixin", () -> LoadingModList.get().getModFileById("cold_sweat") != null,
-            "net.gobies.gobtweaks.mixin.reforgingstation.QualityMixin2", () -> LoadingModList.get().getModFileById("irons_spellbooks") != null,
-            "net.gobies.gobtweaks.mixin.reforgingstation.HandlerCuriosMixin", () -> LoadingModList.get().getModFileById("curios") != null,
-            "net.gobies.gobtweaks.mixin.spartanfire.ItemMixin", () -> LoadingModList.get().getModFileById("spartanfire") != null,
-            "net.gobies.gobtweaks.mixin.thirstwastaken.DrinkByHandClientMixin", () -> LoadingModList.get().getModFileById("alexscaves") != null
-    );
+    private static final Map<String, Supplier<Boolean>> CONDITIONS = ImmutableMap.<String, Supplier<Boolean>>builder()
+            .put("net.gobies.gobtweaks.mixin.blessfulled.DamagePopupTriggersMixin", () -> LoadingModList.get().getModFileById("pml") != null)
+            .put("net.gobies.gobtweaks.mixin.carryon.PickupHandlerMixin", () -> LoadingModList.get().getModFileById("locks") != null)
+            .put("net.gobies.gobtweaks.mixin.fbt.BattleTowerGolemEntityMixin", () -> LoadingModList.get().getModFileById("locks") != null)
+            .put("net.gobies.gobtweaks.mixin.iceandfire.EntityDragonBaseMixin", () -> LoadingModList.get().getModFileById("dynamictrees") != null)
+            .put("net.gobies.gobtweaks.mixin.iceandfire.DragonUtilsMixin", () -> LoadingModList.get().getModFileById("dynamictrees") != null)
+            .put("net.gobies.gobtweaks.mixin.iceandfire.FrozenDataMixin", () -> LoadingModList.get().getModFileById("cold_sweat") != null)
+            .put("net.gobies.gobtweaks.mixin.reforgingstation.QualityMixin2", () -> LoadingModList.get().getModFileById("irons_spellbooks") != null)
+            .put("net.gobies.gobtweaks.mixin.reforgingstation.HandlerCuriosMixin", () -> LoadingModList.get().getModFileById("curios") != null)
+            .put("net.gobies.gobtweaks.mixin.spartanfire.ItemMixin", () -> LoadingModList.get().getModFileById("spartanfire") != null)
+            .put("net.gobies.gobtweaks.mixin.thirstwastaken.DrinkByHandClientMixin", () -> LoadingModList.get().getModFileById("alexscaves") != null)
+            .build();
 
     @Override
     public void onLoad(String mixinPackage) {

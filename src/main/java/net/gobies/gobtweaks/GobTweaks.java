@@ -8,6 +8,7 @@ import net.gobies.gobtweaks.handlers.iceandfire.DragonDamageHandler;
 import net.gobies.gobtweaks.handlers.locks.WorldGenLockHandler;
 import net.gobies.gobtweaks.handlers.reforgingstation.ReforgingStationHandler;
 import net.gobies.gobtweaks.handlers.firstaid.EHDamageHandler;
+import net.gobies.gobtweaks.handlers.thirst.ISThirstHandler;
 import net.gobies.gobtweaks.handlers.thirst.ThirstHandler;
 import net.gobies.gobtweaks.util.ModLoadedUtil;
 import net.minecraftforge.common.MinecraftForge;
@@ -63,6 +64,7 @@ public class GobTweaks {
         if (ModLoadedUtil.isIceandFireLoaded()) MinecraftForge.EVENT_BUS.register(DragonDamageHandler.class);
         if (ModLoadedUtil.isDynamicTreesLoaded()) MinecraftForge.EVENT_BUS.register(DynamicSticksHandler.class);
         if (ModLoadedUtil.isThirstLoaded()) MinecraftForge.EVENT_BUS.register(ThirstHandler.class);
+        if (ModLoadedUtil.isThirstLoaded() && ModLoadedUtil.isIronsspellbooksLoaded()) MinecraftForge.EVENT_BUS.register(ISThirstHandler.class);
         if (ModLoadedUtil.isLocksLoaded()) MinecraftForge.EVENT_BUS.register(WorldGenLockHandler.class);
         if (ModLoadedUtil.isReforgingStationLoaded()) ReforgingStationHandler.loadClass();
         if (ModLoadedUtil.isFirstAidLoaded() && ModLoadedUtil.isEnhancedVisualsLoaded()) MinecraftForge.EVENT_BUS.register(EHDamageHandler.class);
