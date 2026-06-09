@@ -18,8 +18,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
         SupremeColdAspectEnchantment.class,
         SupremeFireAspectEnchantment.class,
         SupremeSharpnessEnchantment.class,
-        RepairableEnchantment.class}
-)
+        RepairableEnchantment.class
+})
 public class TradableEnchantmentsMixin {
     @Inject(
             method = "isTradeable",

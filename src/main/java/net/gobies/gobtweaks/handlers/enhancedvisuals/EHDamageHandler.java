@@ -1,4 +1,4 @@
-package net.gobies.gobtweaks.handlers.firstaid;
+package net.gobies.gobtweaks.handlers.enhancedvisuals;
 
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
@@ -9,6 +9,7 @@ import team.creative.enhancedvisuals.EnhancedVisuals;
 
 public class EHDamageHandler {
 
+    // For first aid
     @SubscribeEvent
     public static void onLivingDamage(LivingDamageEvent event) {
         LivingEntity entity = event.getEntity();

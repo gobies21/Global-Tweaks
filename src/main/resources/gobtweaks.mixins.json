@@ -21,6 +21,7 @@
     "iceandfire.EnumDragonArmorMixin",
     "iceandfire.FrozenDataMixin",
     "iceandfire.ItemAlchemySwordMixin",
+    "jlme.ArrowEventsMixin",
     "jlme.RuneEnchantmentsMixin",
     "jlme.SupremeSharpnessEnchantmentMixin",
     "jlme.TradableEnchantmentsMixin",

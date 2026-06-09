@@ -9,7 +9,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class ISThirstHandler {
 
-
     @SubscribeEvent
     public static void onCast(SpellOnCastEvent event) {
         if (ModLoadedUtil.isThirstLoaded() && ModLoadedUtil.isIronsspellbooksLoaded() && CommonConfig.THIRST_ATTACK_EXHAUSTION.get()) {

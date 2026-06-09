@@ -22,37 +22,36 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.Nullable;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Mixin(QualityUtil.class)
 public abstract class QualityUtilMixin {
 
-    @Unique
-    private static final Set<Item> ADDITIONAL_TOOL_ITEMS = GTUtils.createItemSet(CommonConfig.ADD_TOOL_QUALITIES.get());
+    @Unique private static Set<Item> gobTweaks$toolAddCache;
+    @Unique private static Set<Item> gobTweaks$toolBlacklistCache;
+    @Unique private static Set<Item> gobTweaks$shieldAddCache;
+    @Unique private static Set<Item> gobTweaks$shieldBlacklistCache;
+    @Unique private static Set<Item> gobTweaks$bowAddCache;
+    @Unique private static Set<Item> gobTweaks$bowBlacklistCache;
+    @Unique private static Set<Item> gobTweaks$petAddCache;
 
     @Unique
-    private static final Set<Item> BLACKLIST_TOOL_ITEMS = GTUtils.createItemSet(CommonConfig.BLACKLIST_TOOL_QUALITIES.get());
+    private static void gobTweaks$checkItemCaches() {
+        if (gobTweaks$toolAddCache != null) return;
 
-    @Unique
-    private static final Set<Item> ADDITIONAL_SHIELD_ITEMS = GTUtils.createItemSet(CommonConfig.ADD_SHIELD_QUALITIES.get());
+        gobTweaks$toolAddCache = new java.util.HashSet<>(GTUtils.createItemSet(CommonConfig.ADD_TOOL_QUALITIES.get()));
+        gobTweaks$toolAddCache.addAll(GTUtils.ADDITIONAL_TOOL_ITEMS);
 
-    @Unique
-    private static final Set<Item> BLACKLIST_SHIELD_ITEMS = GTUtils.createItemSet(CommonConfig.BLACKLIST_SHIELD_QUALITIES.get());
+        gobTweaks$toolBlacklistCache = GTUtils.createItemSet(CommonConfig.BLACKLIST_TOOL_QUALITIES.get());
 
-    @Unique
-    private static final Set<Item> ADDITIONAL_BOW_ITEMS = GTUtils.createItemSet(CommonConfig.ADD_BOW_QUALITIES.get());
+        gobTweaks$shieldAddCache = GTUtils.createItemSet(CommonConfig.ADD_SHIELD_QUALITIES.get());
+        gobTweaks$shieldBlacklistCache = GTUtils.createItemSet(CommonConfig.BLACKLIST_SHIELD_QUALITIES.get());
 
-    @Unique
-    private static final Set<Item> BLACKLIST_BOW_ITEMS = GTUtils.createItemSet(CommonConfig.BLACKLIST_BOW_QUALITIES.get());
+        gobTweaks$bowAddCache = GTUtils.createItemSet(CommonConfig.ADD_BOW_QUALITIES.get());
+        gobTweaks$bowBlacklistCache = GTUtils.createItemSet(CommonConfig.BLACKLIST_BOW_QUALITIES.get());
 
-    @Unique
-    private static final Set<Item> ADDITIONAL_PET_ARMOR_ITEMS = new HashSet<>();
-
-    static {
-        ADDITIONAL_PET_ARMOR_ITEMS.addAll(GTUtils.ADDITIONAL_PET_ITEMS);
-        ADDITIONAL_TOOL_ITEMS.addAll(GTUtils.ADDITIONAL_TOOL_ITEMS);
+        gobTweaks$petAddCache = new java.util.HashSet<>(GTUtils.ADDITIONAL_PET_ITEMS);
     }
 
     // Adds a config for custom weapons to be able to receive qualities
@@ -63,11 +62,11 @@ public abstract class QualityUtilMixin {
             cancellable = true
     )
     private static void addToolQuality(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
+        gobTweaks$checkItemCaches();
         Item tool = stack.getItem();
-        if (ADDITIONAL_TOOL_ITEMS.contains(tool)) {
+        if (gobTweaks$toolAddCache.contains(tool)) {
             cir.setReturnValue(true);
-        }
-        if (BLACKLIST_TOOL_ITEMS.contains(tool)) {
+        } else if (gobTweaks$toolBlacklistCache.contains(tool)) {
             cir.setReturnValue(false);
         }
     }
@@ -79,11 +78,11 @@ public abstract class QualityUtilMixin {
             cancellable = true
     )
     private static void addShieldQuality(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
+        gobTweaks$checkItemCaches();
         Item shield = stack.getItem();
-        if (ADDITIONAL_SHIELD_ITEMS.contains(shield)) {
+        if (gobTweaks$shieldAddCache.contains(shield)) {
             cir.setReturnValue(true);
-        }
-        if (BLACKLIST_SHIELD_ITEMS.contains(shield)) {
+        } else if (gobTweaks$shieldBlacklistCache.contains(shield)) {
             cir.setReturnValue(false);
         }
     }
@@ -95,11 +94,11 @@ public abstract class QualityUtilMixin {
             cancellable = true
     )
     private static void addBowQuality(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
+        gobTweaks$checkItemCaches();
         Item bow = stack.getItem();
-        if (ADDITIONAL_BOW_ITEMS.contains(bow)) {
+        if (gobTweaks$bowAddCache.contains(bow)) {
             cir.setReturnValue(true);
-        }
-        if (BLACKLIST_BOW_ITEMS.contains(bow)) {
+        } else if (gobTweaks$bowBlacklistCache.contains(bow)) {
             cir.setReturnValue(false);
         }
     }
@@ -111,8 +110,9 @@ public abstract class QualityUtilMixin {
             cancellable = true
     )
     private static void addPetQuality(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        Item petArmor = stack.getItem();
-        if (ModLoadedUtil.isIceandFireLoaded() && ADDITIONAL_PET_ARMOR_ITEMS.contains(petArmor)) {
+        if (!ModLoadedUtil.isIceandFireLoaded()) return;
+        gobTweaks$checkItemCaches();
+        if (gobTweaks$petAddCache.contains(stack.getItem())) {
             cir.setReturnValue(true);
         }
     }
@@ -124,8 +124,7 @@ public abstract class QualityUtilMixin {
             cancellable = true
     )
     private static void addHelmetQuality(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        Item armor = stack.getItem();
-        if (GTUtils.isSkullHelmet(armor.getDefaultInstance())) {
+        if (GTUtils.isSkullHelmet(stack)) {
             cir.setReturnValue(true);
         }
     }
