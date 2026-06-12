@@ -54,6 +54,12 @@ public class GobTweaks {
         if (ModLoadedUtil.isIceandFireLoaded()) LOGGER.info("Ice and Fire loaded fixed wrong armor values for dragon scale armor");
         if (ModLoadedUtil.isIceandFireLoaded() && ModLoadedUtil.isDynamicTreesLoaded()) LOGGER.info("Dynamic Trees compatibility for ice and fire has been loaded to allow dragons to destroy dynamic trees");
         if (ModLoadedUtil.isDungeonCrawlLoaded()) LOGGER.info("Dungeon Crawl loaded new config option to set a chance for geared mobs to spawn with curse of vanishing on their gear");
+
+        /*
+        if (ModLoadedUtil.isReforgingStationLoaded()) {
+            event.enqueueWork(QualityConfig::loadJsonConfig);
+        }
+         */
     }
 
     public void clientSetup(final FMLClientSetupEvent event) {

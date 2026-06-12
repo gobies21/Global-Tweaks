@@ -143,6 +143,7 @@ dependencies {
     compileOnly(fg.deobf("curse.maven:itemphysic-258587:6450992"))
     implementation fg.deobf("curse.maven:no-tree-punching-289043:4599926")
     runtimeOnly(fg.deobf("curse.maven:just-enough-effect-descriptions-jeed-532286:6172935"))
+    implementation fg.deobf("curse.maven:spark-361579:4738952")
 
     //implementation fg.deobf("curse.maven:demis-better-stealth-1343821:6989663")
 }

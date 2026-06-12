@@ -22,6 +22,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.Nullable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -40,10 +41,9 @@ public abstract class QualityUtilMixin {
     private static void gobTweaks$checkItemCaches() {
         if (gobTweaks$toolAddCache != null) return;
 
-        gobTweaks$toolAddCache = new java.util.HashSet<>(GTUtils.createItemSet(CommonConfig.ADD_TOOL_QUALITIES.get()));
-        gobTweaks$toolAddCache.addAll(GTUtils.ADDITIONAL_TOOL_ITEMS);
-
+        gobTweaks$toolAddCache = new HashSet<>(GTUtils.createItemSet(CommonConfig.ADD_TOOL_QUALITIES.get()));
         gobTweaks$toolBlacklistCache = GTUtils.createItemSet(CommonConfig.BLACKLIST_TOOL_QUALITIES.get());
+        gobTweaks$toolAddCache.addAll(GTUtils.ADDITIONAL_TOOL_ITEMS);
 
         gobTweaks$shieldAddCache = GTUtils.createItemSet(CommonConfig.ADD_SHIELD_QUALITIES.get());
         gobTweaks$shieldBlacklistCache = GTUtils.createItemSet(CommonConfig.BLACKLIST_SHIELD_QUALITIES.get());
@@ -51,7 +51,7 @@ public abstract class QualityUtilMixin {
         gobTweaks$bowAddCache = GTUtils.createItemSet(CommonConfig.ADD_BOW_QUALITIES.get());
         gobTweaks$bowBlacklistCache = GTUtils.createItemSet(CommonConfig.BLACKLIST_BOW_QUALITIES.get());
 
-        gobTweaks$petAddCache = new java.util.HashSet<>(GTUtils.ADDITIONAL_PET_ITEMS);
+        gobTweaks$petAddCache = new HashSet<>(GTUtils.ADDITIONAL_PET_ITEMS);
     }
 
     // Adds a config for custom weapons to be able to receive qualities
