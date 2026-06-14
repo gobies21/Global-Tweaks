@@ -53,7 +53,7 @@ public class QualityMixin2 {
             List<Quality.QualityType> list = cir.getReturnValue();
             list.add(new Quality.QualityType("inept", ChatFormatting.RED, new Quality.Modifier(AttributeHandler.MAX_MANA, -10.0F)));
             list.add(new Quality.QualityType("adept", ChatFormatting.BLUE, new Quality.Modifier(AttributeHandler.MAX_MANA, 10.0F)));
-            list.add(new Quality.QualityType("mystic", ChatFormatting.AQUA, new Quality.Modifier(AttributeHandler.SPELL_POWER, 0.03F), new Quality.Modifier(AttributeHandler.COOLDOWN_REDUCTION, 0.01F)));
+            list.add(new Quality.QualityType("mystic", ChatFormatting.AQUA, new Quality.Modifier(AttributeHandler.SPELL_POWER, 0.03F), new Quality.Modifier(RegistryAttributes.MAGIC_RESIST.get(), 0.01F)));
             list.add(new Quality.QualityType("celestial", ChatFormatting.LIGHT_PURPLE, new Quality.Modifier(AttributeHandler.SPELL_POWER, 0.03F), new Quality.Modifier(AttributeHandler.MANA_REGEN, 0.03F), new Quality.Modifier(AttributeHandler.MAX_MANA, 10.0F)));
         }
     }

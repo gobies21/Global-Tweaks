@@ -8,14 +8,12 @@ public class AttributeHandler {
     public static Attribute SPELL_POWER;
     public static Attribute MANA_REGEN;
     public static Attribute MAX_MANA;
-    public static Attribute COOLDOWN_REDUCTION;
 
     static {
         if (ModLoadedUtil.isIronsspellbooksLoaded()) {
             SPELL_POWER = AttributeRegistry.SPELL_POWER.get();
             MANA_REGEN = AttributeRegistry.MANA_REGEN.get();
             MAX_MANA = AttributeRegistry.MAX_MANA.get();
-            COOLDOWN_REDUCTION = AttributeRegistry.COOLDOWN_REDUCTION.get();
         }
     }
 }

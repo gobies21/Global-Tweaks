@@ -1,28 +1,25 @@
 package net.gobies.gobtweaks.mixin.vanilla;
 
 import net.gobies.gobtweaks.config.CommonConfig;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(Entity.class)
+@Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin {
     @Inject(
-            method = "thunderHit",
+            method = "hurt",
             at = @At("HEAD"),
             cancellable = true
     )
-    // Prevent lightning from destroying items
-    public void thunderHit(ServerLevel pLevel, LightningBolt pLightning, CallbackInfo ci) {
-        if (CommonConfig.LIGHTNING_DESTROY_ITEM.get()) {
-            Entity entity = (Entity) ((Object) this);
-            if (entity instanceof ItemEntity) {
-                ci.cancel();
+    public void preventExplosionDamage(DamageSource pSource, float pAmount, CallbackInfoReturnable<Boolean> cir) {
+        if (CommonConfig.EXPLOSION_DESTROY_ITEM.get()) {
+            if (pSource.is(DamageTypeTags.IS_EXPLOSION)) {
+                cir.cancel();
             }
         }
     }

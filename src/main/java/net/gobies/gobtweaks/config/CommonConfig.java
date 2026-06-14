@@ -21,6 +21,8 @@ public class CommonConfig {
 
     public static ForgeConfigSpec.ConfigValue<Boolean> LIGHTNING_DESTROY_ITEM;
     public static boolean lightning_destroy_item;
+    public static ForgeConfigSpec.ConfigValue<Boolean> EXPLOSION_DESTROY_ITEM;
+    public static boolean explosion_destroy_item;
     public static ForgeConfigSpec.ConfigValue<Boolean> GRASS_ATTACK;
     public static boolean grass_attack;
     public static ForgeConfigSpec.ConfigValue<Boolean> NO_FIRE_OVERLAY;
@@ -99,6 +101,7 @@ public class CommonConfig {
     static void onLoad(ModConfigEvent.Loading configEvent) {
         if (configEvent.getConfig().getFileName().equals(FILENAME)) {
             lightning_destroy_item = LIGHTNING_DESTROY_ITEM.get();
+            explosion_destroy_item =  EXPLOSION_DESTROY_ITEM.get();
             grass_attack = GRASS_ATTACK.get();
             no_fire_overlay = NO_FIRE_OVERLAY.get();
             extra_crossbows_enchants = EXTRA_CROSSBOWS_ENCHANTS.get();
@@ -156,6 +159,7 @@ public class CommonConfig {
 
         BUILDER.push("Vanilla");
         LIGHTNING_DESTROY_ITEM = BUILDER.comment("Prevents lightning from destroying items").define("Lightning_Prevention", true);
+        EXPLOSION_DESTROY_ITEM = BUILDER.comment("Prevents explosions from destroying items").define("Explosion_Prevention", true);
         GRASS_ATTACK = BUILDER.comment("Allows attacking through grass without breaking it").define("Attack_Through_Grass", true);
         NO_FIRE_OVERLAY = BUILDER.comment("Makes having fire resistance or being in creative not allow entities to get set on fire").define("No_Fire_Overlay", true);
         EXTRA_CROSSBOWS_ENCHANTS = BUILDER.comment("Allows crossbows to be enchanted with normal bow enchantments").define("Extra_Crossbows_Enchants", false);

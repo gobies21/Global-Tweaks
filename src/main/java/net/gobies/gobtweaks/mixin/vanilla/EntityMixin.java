@@ -1,10 +1,13 @@
 package net.gobies.gobtweaks.mixin.vanilla;
 
 import net.gobies.gobtweaks.config.CommonConfig;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -18,6 +21,21 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin {
+
+    @Inject(
+            method = "thunderHit",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    // Prevent lightning from destroying items
+    public void thunderHit(ServerLevel pLevel, LightningBolt pLightning, CallbackInfo ci) {
+        if (CommonConfig.LIGHTNING_DESTROY_ITEM.get()) {
+            Entity entity = (Entity) ((Object) this);
+            if (entity instanceof ItemEntity) {
+                ci.cancel();
+            }
+        }
+    }
 
     @Shadow
     public abstract Level level();
