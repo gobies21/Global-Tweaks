@@ -89,6 +89,8 @@ public class CommonConfig {
     public static Map<ResourceLocation, ResourceLocation> always_lock = new ConcurrentHashMap<>();
     public static ForgeConfigSpec.ConfigValue<String> CARRY_ON_EFFECT;
     public static String carry_on_effect;
+    public static ForgeConfigSpec.ConfigValue<Integer> DESPAWN_LIFESPAN;
+    public static int despawn_lifespan;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> DEBUG;
     public static boolean debug;
@@ -147,6 +149,7 @@ public class CommonConfig {
                 }
             }
             carry_on_effect = CARRY_ON_EFFECT.get();
+            despawn_lifespan = DESPAWN_LIFESPAN.get();
             debug = DEBUG.get();
         }
     }
@@ -154,6 +157,7 @@ public class CommonConfig {
     static {
         BUILDER.push("General");
         BLACKLIST_CREATIVE_TAB = BUILDER.comment("List items to blacklist from the creative tab").defineList("Creative_Blacklist", List.of(), o -> true);
+        DESPAWN_LIFESPAN = BUILDER.comment("How long it takes in ticks for items to despawn, Higher values may cause lag").define("Despawn_Timer", 6000);
         DEBUG = BUILDER.comment("Enable debug mode (experimental features)").define("Debug", false);
         BUILDER.pop();
 
