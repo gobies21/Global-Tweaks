@@ -47,6 +47,8 @@ public class CommonConfig {
     public static boolean tradable_rune_enchantments;
     public static ForgeConfigSpec.ConfigValue<Boolean> MAGE_QUALITIES;
     public static boolean mage_qualities;
+    public static ForgeConfigSpec.ConfigValue<Boolean> RUNE_BALANCE;
+    public static boolean rune_balance;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> ADD_TOOL_QUALITIES;
     public static List<? extends String> add_tool_qualities;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> ADD_SHIELD_QUALITIES;
@@ -91,13 +93,15 @@ public class CommonConfig {
     public static String carry_on_effect;
     public static ForgeConfigSpec.ConfigValue<Integer> DESPAWN_LIFESPAN;
     public static int despawn_lifespan;
+    public static ForgeConfigSpec.ConfigValue<Integer> MAX_ARMOR_DAMAGE;
+    public static int max_armor_damage;
+    public static ForgeConfigSpec.ConfigValue<Integer> UNBREAKING_ARMOR_DAMAGE;
+    public static int unbreaking_armor_damage;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> DEBUG;
     public static boolean debug;
-
-
-    public CommonConfig() {
-    }
+    public static ForgeConfigSpec.ConfigValue<Boolean> SPECIAL_FEATURES;
+    public static boolean special_features;
 
     @SubscribeEvent
     static void onLoad(ModConfigEvent.Loading configEvent) {
@@ -115,6 +119,7 @@ public class CommonConfig {
             supreme_sharpness_level_damage = SUPREME_SHARPNESS_LEVEL_DAMAGE.get().floatValue();
             tradable_global_enchantments = TRADABLE_GLOBAL_ENCHANTMENTS.get();
             tradable_rune_enchantments = TRADABLE_RUNE_ENCHANTMENTS.get();
+            rune_balance = RUNE_BALANCE.get();
             mage_qualities = MAGE_QUALITIES.get();
             add_tool_qualities = ADD_TOOL_QUALITIES.get();
             add_shield_qualities = ADD_SHIELD_QUALITIES.get();
@@ -150,7 +155,10 @@ public class CommonConfig {
             }
             carry_on_effect = CARRY_ON_EFFECT.get();
             despawn_lifespan = DESPAWN_LIFESPAN.get();
+            max_armor_damage = MAX_ARMOR_DAMAGE.get();
+            unbreaking_armor_damage = UNBREAKING_ARMOR_DAMAGE.get();
             debug = DEBUG.get();
+            special_features = SPECIAL_FEATURES.get();
         }
     }
 
@@ -158,7 +166,10 @@ public class CommonConfig {
         BUILDER.push("General");
         BLACKLIST_CREATIVE_TAB = BUILDER.comment("List items to blacklist from the creative tab").defineList("Creative_Blacklist", List.of(), o -> true);
         DESPAWN_LIFESPAN = BUILDER.comment("How long it takes in ticks for items to despawn, Higher values may cause lag").define("Despawn_Timer", 6000);
+        MAX_ARMOR_DAMAGE = BUILDER.comment("Maximum durability damage armor can take to prevent armor getting broken to easily").define("Max_Armor_Damage", 100);
+        UNBREAKING_ARMOR_DAMAGE = BUILDER.comment("Durability that each unbreaking level removes from the max cap").define("Unbreaking_Armor_Damage", 15);
         DEBUG = BUILDER.comment("Enable debug mode (experimental features)").define("Debug", false);
+        SPECIAL_FEATURES = BUILDER.comment("Enable special features, not recommended unless you know what this does").define("Special_Features", false);
         BUILDER.pop();
 
         BUILDER.push("Vanilla");
@@ -185,6 +196,7 @@ public class CommonConfig {
         SUPREME_SHARPNESS_LEVEL_DAMAGE = BUILDER.comment("Supreme sharpness damage per level").define("Supreme_Sharpness_Level_Damage", 2.0);
         TRADABLE_GLOBAL_ENCHANTMENTS = BUILDER.comment("Makes all non rune enchantments tradable").define("Tradable_Enchantments", false);
         TRADABLE_RUNE_ENCHANTMENTS = BUILDER.comment("Makes all rune enchantments tradable").define("Tradable_Runes", false);
+        RUNE_BALANCE = BUILDER.comment("Makes piercing runes only have half of their effect when against players").define("Rune_Balance", true);
         BUILDER.pop();
 
         BUILDER.push("Reforging_Station");

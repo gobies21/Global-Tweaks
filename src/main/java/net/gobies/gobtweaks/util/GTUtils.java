@@ -4,9 +4,11 @@ import com.github.alexthe666.iceandfire.item.IafItemRegistry;
 import com.github.alexthe666.iceandfire.item.ItemDragonArmor;
 import com.oblivioussp.spartanweaponry.item.ThrowingWeaponItem;
 import fuzs.mutantmonsters.world.item.ArmorBlockItem;
+import io.redspace.ironsspellbooks.item.weapons.StaffItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashSet;
@@ -58,5 +60,13 @@ public class GTUtils {
             return armor instanceof ArmorBlockItem;
         }
         return false;
+    }
+
+    public static boolean isStaff(Item item) {
+        if (ModList.get().isLoaded("irons_spellbooks")) {
+            return item instanceof StaffItem;
+        } else {
+            return false;
+        }
     }
 }

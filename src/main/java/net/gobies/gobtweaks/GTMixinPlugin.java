@@ -24,6 +24,7 @@ public final class GTMixinPlugin implements IMixinConfigPlugin {
             .put("net.gobies.gobtweaks.mixin.reforgingstation.HandlerCuriosMixin", () -> LoadingModList.get().getModFileById("curios") != null)
             .put("net.gobies.gobtweaks.mixin.spartanfire.ItemMixin", () -> LoadingModList.get().getModFileById("spartanfire") != null)
             .put("net.gobies.gobtweaks.mixin.thirstwastaken.DrinkByHandClientMixin", () -> LoadingModList.get().getModFileById("alexscaves") != null)
+            .put("net.gobies.gobtweaks.mixin.jlme.StaffEnchantmentMixin", () -> LoadingModList.get().getModFileById("irons_spellbooks") != null)
             .build();
 
     @Override

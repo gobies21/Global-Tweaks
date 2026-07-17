@@ -13,7 +13,7 @@ public class ModLoadedUtil {
     }
 
     public static boolean isBlessfulledLoaded() {
-        return ModList.get().isLoaded("blessfuled");
+        return ModList.get().isLoaded("blessfulled");
     }
 
     public static boolean isReforgingStationLoaded() {
@@ -95,6 +95,7 @@ public class ModLoadedUtil {
     public static boolean isFirstAidLoaded() {
         return ModList.get().isLoaded("firstaid");
     }
+
     public static boolean isEnhancedVisualsLoaded() {
         return ModList.get().isLoaded("enhancedvisuals");
     }
