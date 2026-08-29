@@ -8,7 +8,7 @@ public class ModLoadedUtil {
         return ModList.get().isLoaded("curios");
     }
 
-    public static boolean isIronsspellbooksLoaded() {
+    public static boolean isIronsSpellbooksLoaded() {
         return ModList.get().isLoaded("irons_spellbooks");
     }
 

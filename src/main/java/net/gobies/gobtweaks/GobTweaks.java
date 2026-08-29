@@ -7,7 +7,6 @@ import net.gobies.gobtweaks.handlers.dynamictrees.DynamicSticksHandler;
 import net.gobies.gobtweaks.handlers.firstaid.LoginHandler;
 import net.gobies.gobtweaks.handlers.iceandfire.DragonDamageHandler;
 import net.gobies.gobtweaks.handlers.locks.WorldGenLockHandler;
-import net.gobies.gobtweaks.handlers.reforgingstation.ReforgingStationHandler;
 import net.gobies.gobtweaks.handlers.enhancedvisuals.EHDamageHandler;
 import net.gobies.gobtweaks.handlers.thirst.ISThirstHandler;
 import net.gobies.gobtweaks.handlers.thirst.ThirstHandler;
@@ -48,18 +47,12 @@ public class GobTweaks {
         if (ModLoadedUtil.isFBTLoaded() && ModLoadedUtil.isLocksLoaded()) LOGGER.info("Forgotten Battle Towers compatibility for locks has been loaded to allow using locked chests until they are unlocked in battle towers");
         if (ModLoadedUtil.isJLMELoaded()) LOGGER.info("JLME loaded new config options to change non configurable settings");
         if (ModLoadedUtil.isReforgingStationLoaded()) LOGGER.info("Reforging Station loaded any item with repair material will work as their respective reforge item and option to add any tool to be allowed to receive qualities");
-        if (ModLoadedUtil.isReforgingStationLoaded() && ModLoadedUtil.isIronsspellbooksLoaded()) LOGGER.info("Reforging Station loaded new qualities for irons spellbooks and option to add any tool to be allowed to receive qualities");
+        if (ModLoadedUtil.isReforgingStationLoaded() && ModLoadedUtil.isIronsSpellbooksLoaded()) LOGGER.info("Reforging Station loaded new qualities for irons spellbooks and option to add any tool to be allowed to receive qualities");
         if (ModLoadedUtil.isReforgingStationLoaded() && ModLoadedUtil.isCataclysmLoaded()) LOGGER.info("Reforging station compatibility for Cataclysm has been loaded to allow all weapons from cataclysm to receive qualities");
         if (ModLoadedUtil.isRefurbishedFurnitureLoaded()) LOGGER.info("Refurbished Furniture loaded configs for fridges and crates to increase rows");
         if (ModLoadedUtil.isIceandFireLoaded()) LOGGER.info("Ice and Fire loaded fixed wrong armor values for dragon scale armor");
         if (ModLoadedUtil.isIceandFireLoaded() && ModLoadedUtil.isDynamicTreesLoaded()) LOGGER.info("Dynamic Trees compatibility for ice and fire has been loaded to allow dragons to destroy dynamic trees");
         if (ModLoadedUtil.isDungeonCrawlLoaded()) LOGGER.info("Dungeon Crawl loaded new config option to set a chance for geared mobs to spawn with curse of vanishing on their gear");
-
-        /*
-        if (ModLoadedUtil.isReforgingStationLoaded()) {
-            event.enqueueWork(QualityConfig::loadJsonConfig);
-        }
-         */
     }
 
     public void clientSetup(final FMLClientSetupEvent event) {
@@ -71,9 +64,8 @@ public class GobTweaks {
         if (ModLoadedUtil.isIceandFireLoaded()) MinecraftForge.EVENT_BUS.register(DragonDamageHandler.class);
         if (ModLoadedUtil.isDynamicTreesLoaded()) MinecraftForge.EVENT_BUS.register(DynamicSticksHandler.class);
         if (ModLoadedUtil.isThirstLoaded()) MinecraftForge.EVENT_BUS.register(ThirstHandler.class);
-        if (ModLoadedUtil.isThirstLoaded() && ModLoadedUtil.isIronsspellbooksLoaded()) MinecraftForge.EVENT_BUS.register(ISThirstHandler.class);
+        if (ModLoadedUtil.isThirstLoaded() && ModLoadedUtil.isIronsSpellbooksLoaded()) MinecraftForge.EVENT_BUS.register(ISThirstHandler.class);
         if (ModLoadedUtil.isLocksLoaded()) MinecraftForge.EVENT_BUS.register(WorldGenLockHandler.class);
-        if (ModLoadedUtil.isReforgingStationLoaded()) ReforgingStationHandler.loadClass();
         if (ModLoadedUtil.isFirstAidLoaded() && ModLoadedUtil.isEnhancedVisualsLoaded()) MinecraftForge.EVENT_BUS.register(EHDamageHandler.class);
         if (ModLoadedUtil.isFirstAidLoaded()) MinecraftForge.EVENT_BUS.register(LoginHandler.class);
     }

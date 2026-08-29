@@ -11,7 +11,7 @@ public class ISThirstHandler {
 
     @SubscribeEvent
     public static void onCast(SpellOnCastEvent event) {
-        if (ModLoadedUtil.isThirstLoaded() && ModLoadedUtil.isIronsspellbooksLoaded() && CommonConfig.THIRST_ATTACK_EXHAUSTION.get()) {
+        if (ModLoadedUtil.isThirstLoaded() && ModLoadedUtil.isIronsSpellbooksLoaded() && CommonConfig.THIRST_ATTACK_EXHAUSTION.get()) {
             try {
                 Player player = event.getEntity();
                 player.getCapability(ModCapabilities.PLAYER_THIRST, null).ifPresent(cap -> {
