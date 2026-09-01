@@ -45,8 +45,6 @@ public class CommonConfig {
     public static boolean tradable_global_enchantments;
     public static ForgeConfigSpec.ConfigValue<Boolean> TRADABLE_RUNE_ENCHANTMENTS;
     public static boolean tradable_rune_enchantments;
-    public static ForgeConfigSpec.ConfigValue<Boolean> MAGE_QUALITIES;
-    public static boolean mage_qualities;
     public static ForgeConfigSpec.ConfigValue<Boolean> RUNE_BALANCE;
     public static boolean rune_balance;
     public static ForgeConfigSpec.ConfigValue<Double> DUNGEON_VANISH_CHANCE;
@@ -100,7 +98,6 @@ public class CommonConfig {
             tradable_global_enchantments = TRADABLE_GLOBAL_ENCHANTMENTS.get();
             tradable_rune_enchantments = TRADABLE_RUNE_ENCHANTMENTS.get();
             rune_balance = RUNE_BALANCE.get();
-            mage_qualities = MAGE_QUALITIES.get();
             dungeon_vanish_chance = DUNGEON_VANISH_CHANCE.get().floatValue();
             break_branch_type = BREAK_BRANCH_TYPE.get();
             dragon_fire_immune = DRAGON_FIRE_IMMUNE.get();
